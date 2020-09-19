@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Change the Background</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+    <style>
+      body {
+        background-color: #f1f2f4;
+        font-family: 'Lato', sans-serif;
+      }
+      .contentContainer {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      h1 {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      .button-Background {
+        padding: 10px 15px;
+        border-radius: 20px;
+        background-color: #000;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+      }
+      .button-Background:active {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contentContainer">
+      <h1>Background Color Changer</h1>
+      <button type="button" id="buttonBackground" class="button-Background">Change the Background</button>
+    </div>
+    <script>
+      const background = document.querySelector('body');
+      const btn = document.querySelector('#buttonBackground');
+      const header = document.querySelector('h1');
+
+      btn.addEventListener('click', () => {
+        const colors = ['#311D3F', '#522546', '#88304E', '#E23E57', '#FFFFFF'];
+        let randomColor = Math.floor(Math.random() * colors.length);
+        background.style.backgroundColor = colors[randomColor];
+      });
+    </script>
+  </body>
+</html>
