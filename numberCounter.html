@@ -1,53 +1,60 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Change the Background</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
+    <title>Count</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
     <style>
       body {
-        background-color: #f1f2f4;
-        font-family: 'Lato', sans-serif;
+        background-color: #fb4344;
+        color: #fff;
+        font-family: 'Anton', sans-serif;
       }
       .contentContainer {
-        max-width: 500px;
         margin: 0 auto;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         justify-content: center;
+        flex-flow: row wrap;
       }
       h1 {
+        color: #000;
         text-align: center;
-        margin: 2rem 0;
+        width: 100%;
       }
-      .button-Background {
-        padding: 10px 15px;
-        border-radius: 20px;
-        background-color: #000;
-        border: none;
+      .countContainer {
+        border: 2px solid #fff;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        padding-bottom: 1em;
+        width: 12rem;
+      }
+      .currentNumber {
+        font-size: 3em;
+        text-align: center;
+        width: 100%
+      }
+      .decreaseBtn {
+        border: 2px solid #fff;
+        border-radius: 50px;
+        background-color: #fb4344;
         color: #fff;
-        cursor: pointer;
       }
-      .button-Background:active {
-        opacity: 0.5;
+      .increaseBtn {
+        border: 2px solid #fff;
+        border-radius: 50px;
+        background-color: #fb4344;
+        color: #fff;
       }
     </style>
   </head>
   <body>
     <div class="contentContainer">
-      <h1>Background Color Changer</h1>
-      <button type="button" id="buttonBackground" class="button-Background">Change the Background</button>
+      <h1>COUNTER</h1>
+      <div class="countContainer">
+        <p class="currentNumber">0</p>
+          <button class="decreaseBtn" id="decreaseButton" type="button">-</button>
+          <button class="increaseBtn" id="increaseButton" type="button">+</button>
+      </div>
     </div>
-    <script>
-      const background = document.querySelector('body');
-      const btn = document.querySelector('#buttonBackground');
-      const header = document.querySelector('h1');
-
-      btn.addEventListener('click', () => {
-        const colors = ['#311D3F', '#522546', '#88304E', '#E23E57', '#FFFFFF'];
-        let randomColor = Math.floor(Math.random() * colors.length);
-        background.style.backgroundColor = colors[randomColor];
-      });
-    </script>
   </body>
 </html>
