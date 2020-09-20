@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Count</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
+    <style>
+      body {
+        background-color: #fb4344;
+        color: #fff;
+        font-family: 'Anton', sans-serif;
+      }
+      .contentContainer {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+      }
+      h1 {
+        color: #000;
+        text-align: center;
+        width: 100%;
+      }
+      .countContainer {
+        border: 2px solid #fff;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        padding-bottom: 18px;
+        width: 175px;
+      }
+      .currentNumber {
+        font-size: 3em;
+        text-align: center;
+        width: 100%
+      }
+      .countBtn {
+        border: 2px solid #fff;
+        border-radius: 50px;
+        background-color: #fb4344;
+        color: #fff;
+        font-size: 1.75em;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      .countBtn:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: background-color 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contentContainer">
+      <h1>COUNTER</h1>
+      <div class="countContainer">
+        <p class="currentNumber" id="currentCount">0</p>
+          <button class="countBtn" id="decreaseButton" type="button">-</button>
+          <button class="countBtn" id="increaseButton" type="button">+</button>
+      </div>
+    </div>
+    <script>
+      let currentCount = document.querySelector('#currentCount');
+      let countNumber = 0;
+      const decrease = document.querySelector('#decreaseButton');
+      const increase = document.querySelector('#increaseButton');
+      increase.addEventListener('click', () => {
+        countNumber++;
+        currentCount.innerHTML = countNumber;
+      });
+      decrease.addEventListener('click', () => {
+        countNumber--;
+        currentCount.innerHTML = countNumber;
+      });
+    </script>
+  </body>
+</html>
