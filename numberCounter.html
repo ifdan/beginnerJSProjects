@@ -25,25 +25,26 @@
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
-        padding-bottom: 1em;
-        width: 12rem;
+        padding-bottom: 18px;
+        width: 175px;
       }
       .currentNumber {
         font-size: 3em;
         text-align: center;
         width: 100%
       }
-      .decreaseBtn {
+      .countBtn {
         border: 2px solid #fff;
         border-radius: 50px;
         background-color: #fb4344;
         color: #fff;
+        font-size: 1.75em;
+        width: 2.5rem;
+        height: 2.5rem;
       }
-      .increaseBtn {
-        border: 2px solid #fff;
-        border-radius: 50px;
-        background-color: #fb4344;
-        color: #fff;
+      .countBtn:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: background-color 0.5s;
       }
     </style>
   </head>
@@ -51,10 +52,24 @@
     <div class="contentContainer">
       <h1>COUNTER</h1>
       <div class="countContainer">
-        <p class="currentNumber">0</p>
-          <button class="decreaseBtn" id="decreaseButton" type="button">-</button>
-          <button class="increaseBtn" id="increaseButton" type="button">+</button>
+        <p class="currentNumber" id="currentCount">0</p>
+          <button class="countBtn" id="decreaseButton" type="button">-</button>
+          <button class="countBtn" id="increaseButton" type="button">+</button>
       </div>
     </div>
+    <script>
+      let currentCount = document.querySelector('#currentCount');
+      let countNumber = 0;
+      const decrease = document.querySelector('#decreaseButton');
+      const increase = document.querySelector('#increaseButton');
+      increase.addEventListener('click', () => {
+        countNumber++;
+        currentCount.innerHTML = countNumber;
+      });
+      decrease.addEventListener('click', () => {
+        countNumber--;
+        currentCount.innerHTML = countNumber;
+      });
+    </script>
   </body>
 </html>
