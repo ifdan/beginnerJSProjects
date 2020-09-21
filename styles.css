@@ -1,0 +1,71 @@
+body {
+  background-color: #fb4344;
+  font-family: 'Anton', sans-serif;
+}
+.contentContainer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+h1 {
+  text-align: center;
+  margin: 2rem 0;
+  width: 100%;
+}
+/* Change Background */
+.button-Background {
+  padding: 10px 15px;
+  border-radius: 20px;
+  background-color: #000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.button-Background:active {
+  opacity: 0.5;
+}
+/* Letter Counter */
+.input-field {
+  caret-color: #fb4344;
+  border: 2px solid #000;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.5em;
+  margin: 0 2rem;
+}
+.input-field::placeholder {
+  color: #fb4344;;
+}
+.output-text {
+  font-size: 1.2em;
+}
+/* Counter */
+.countContainer {
+  border: 2px solid #fff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding-bottom: 18px;
+  width: 175px;
+}
+.currentNumber {
+  color: #fff;
+  font-size: 3em;
+  text-align: center;
+  width: 100%
+}
+.countBtn {
+  border: 2px solid #fff;
+  border-radius: 50px;
+  background-color: #fb4344;
+  color: #fff;
+  font-size: 1.75em;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.countBtn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s;
+}
