@@ -14,19 +14,5 @@
           <button class="countBtn" id="increaseButton" type="button">+</button>
       </div>
     </div>
-    <script>
-      const currentCount = document.querySelector('#currentCount');
-      let countNumber = 0;
-      const decrease = document.querySelector('#decreaseButton');
-      const increase = document.querySelector('#increaseButton');
-      increase.addEventListener('click', () => {
-        countNumber++;
-        currentCount.innerHTML = countNumber;
-      });
-      decrease.addEventListener('click', () => {
-        countNumber--;
-        currentCount.innerHTML = countNumber;
-      });
-    </script>
   </body>
 </html>

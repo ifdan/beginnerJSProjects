@@ -11,15 +11,5 @@
       <input type="text" id="inputField" class="input-field" name="first-field" placeholder="Type Here" maxlength="100">
       <p class="output-text">Character Count (Including Spaces) : <span id="outputText"></span></p>
     </div>
-    <script>
-      const inputField = document.querySelector('#inputField');
-      let counter = document.querySelector('#outputText');
-      counter.innerText = 0;
-      inputField.value = '';
-
-      inputField.addEventListener('keyup', () => {
-        counter.innerText = inputField.value.length;
-      });
-    </script>
   </body>
 </html>
