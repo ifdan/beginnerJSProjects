@@ -14,6 +14,9 @@
         justify-content: center;
         flex-flow: row wrap;
       }
+      .addContainer {
+        display: flex;
+      }
     </style>
   </head>
   <body>
@@ -31,13 +34,20 @@
       const createListItem = document.querySelector('#toDoBtn');
       createListItem.addEventListener('click', () => {
         const addItem = document.querySelector('#childContainer');
+        const addItemContainer = document.createElement('div');
         const listItem = document.createElement('input');
         const removeBtn = document.createElement('button');
+        addItemContainer.className = 'addContainer';
         listItem.className = 'toDoField';
         removeBtn.className = 'removeItemBtn';
         removeBtn.innerText = 'Remove';
-        addItem.appendChild(listItem);
-        addItem.appendChild(removeBtn);
+        addItem.appendChild(addItemContainer);
+        addItemContainer.appendChild(listItem);
+        addItemContainer.appendChild(removeBtn);
+        const removeListItem = document.querySelectorAll('.removeItemBtn');
+        removeListItem[0].addEventListener('click', () => {
+          addItemContainer.remove();
+        });
       });
     </script>
   </body>
