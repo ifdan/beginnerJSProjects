@@ -33,9 +33,9 @@
     <script>
       const createListItem = document.querySelector('#toDoBtn');
       const createListField = document.querySelector('#listFields');
+      const addItem = document.querySelector('#childContainer');
 
       createListItem.addEventListener('click', () => {
-        const addItem = document.querySelector('#childContainer');
         const addItemContainer = document.createElement('div');
         const listItem = document.createElement('input');
         const removeBtn = document.createElement('button');
@@ -43,7 +43,6 @@
         addItemContainer.className = 'addContainer';
         listItem.className = 'toDoField';
         removeBtn.className = 'removeItemBtn';
-        removeBtn.setAttribute('onclick', 'remove;');
         removeBtn.innerText = 'Remove';
 
         addItem.appendChild(addItemContainer);
@@ -51,11 +50,22 @@
         addItemContainer.appendChild(removeBtn);
         listItem.value = createListField.value;
         createListField.value = '';
-        const removeListItem = document.querySelector('.removeItemBtn');
-        function remove() {
-          removeListItem.remove();
-        }
+
+        const itemRemoveBtn = document.querySelectorAll('.removeItemBtn');
+        if (itemRemoveBtn[0] !== null) {
+          for (let i = 0; i < itemRemoveBtn.length; i++) {
+            itemRemoveBtn[i].addEventListener('click', () => {
+            const itemContainer = document.querySelectorAll('.addContainer');
+            // This is where you left off. Trying to find a way to match the index value of the itemRemoveBtn and itemContainer.
+            console.log(itemRemoveBtn);
+            console.log(itemContainer);
+          });
+          }
+        } else {
+          console.log('failure');
+        }        
       });
+
     </script>
   </body>
 </html>
