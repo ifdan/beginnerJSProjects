@@ -34,3 +34,33 @@ decrease.addEventListener('click', () => {
 });
 
 // To Do List
+const createListItem = document.querySelector('#toDoBtn');
+const createListField = document.querySelector('#listFields');
+const addItem = document.querySelector('#childContainer');
+
+createListItem.addEventListener('click', () => {
+  const addItemContainer = document.createElement('div');
+  const listItem = document.createElement('input');
+  const removeBtn = document.createElement('button');
+
+  addItemContainer.className = 'addContainer';
+  listItem.className = 'toDoField';
+  removeBtn.className = 'removeItemBtn';
+  removeBtn.innerText = 'Remove';
+
+  addItem.appendChild(addItemContainer);
+  addItemContainer.appendChild(listItem);
+  addItemContainer.appendChild(removeBtn);
+  listItem.value = createListField.value;
+  createListField.value = '';
+
+  const itemRemoveBtn = document.querySelectorAll('.removeItemBtn');
+  if (itemRemoveBtn[0] !== null) {
+    const itemContainer = document.querySelectorAll('.addContainer');  
+    for (let i = 0; i < itemRemoveBtn.length; i++) {      
+      itemRemoveBtn[i].addEventListener('click', () => {
+        itemContainer[i].remove();
+      });
+    }
+  }       
+});

@@ -4,20 +4,6 @@
     <title>To Do List</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <style>
-      #parentContainer {
-        display: flex;
-      }
-      #childContainer {
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-      }
-      .addContainer {
-        display: flex;
-      }
-    </style>
   </head>
   <body>
     <div class="contentContainer">
@@ -30,42 +16,6 @@
         <div id="childContainer"></div>
       </div>
     </div>
-    <script>
-      const createListItem = document.querySelector('#toDoBtn');
-      const createListField = document.querySelector('#listFields');
-      const addItem = document.querySelector('#childContainer');
-
-      createListItem.addEventListener('click', () => {
-        const addItemContainer = document.createElement('div');
-        const listItem = document.createElement('input');
-        const removeBtn = document.createElement('button');
-
-        addItemContainer.className = 'addContainer';
-        listItem.className = 'toDoField';
-        removeBtn.className = 'removeItemBtn';
-        removeBtn.innerText = 'Remove';
-
-        addItem.appendChild(addItemContainer);
-        addItemContainer.appendChild(listItem);
-        addItemContainer.appendChild(removeBtn);
-        listItem.value = createListField.value;
-        createListField.value = '';
-
-        const itemRemoveBtn = document.querySelectorAll('.removeItemBtn');
-        if (itemRemoveBtn[0] !== null) {
-          for (let i = 0; i < itemRemoveBtn.length; i++) {
-            itemRemoveBtn[i].addEventListener('click', () => {
-            const itemContainer = document.querySelectorAll('.addContainer');
-            // This is where you left off. Trying to find a way to match the index value of the itemRemoveBtn and itemContainer.
-            console.log(itemRemoveBtn);
-            console.log(itemContainer);
-          });
-          }
-        } else {
-          console.log('failure');
-        }        
-      });
-
-    </script>
+    <script src="scripts.js"></script>
   </body>
 </html>

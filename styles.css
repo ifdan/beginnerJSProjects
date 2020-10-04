@@ -113,3 +113,16 @@ h1 {
   width: 90px;
   height: 40px;
 }
+/* To Do List */
+#parentContainer {
+  display: flex;
+}
+#childContainer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+.addContainer {
+  display: flex;
+}
