@@ -47,18 +47,18 @@ const childContainer = document.querySelector('#childContainer');
 if (createListItem) {
   createListItem.addEventListener('click', () => {
     const removeListContainer = document.createElement('div');
-    const listItem = document.createElement('input');
+    const childListItem = document.createElement('input');
     const removeBtn = document.createElement('button');
 
     removeListContainer.className = 'addContainer';
-    listItem.className = 'toDoField';
+    childListItem.className = 'toDoField';
     removeBtn.className = 'removeItemBtn';
     removeBtn.innerText = 'Remove';
 
     childContainer.appendChild(removeListContainer);
-    removeListContainer.appendChild(listItem);
+    removeListContainer.appendChild(childListItem);
     removeListContainer.appendChild(removeBtn);
-    listItem.value = addToYourList.value;
+    childListItem.value = addToYourList.value;
     addToYourList.value = '';
 
     const itemRemoveBtn = document.querySelectorAll('.removeItemBtn');
