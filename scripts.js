@@ -41,25 +41,25 @@ if (increase) {
 
 // To Do List
 const createListItem = document.querySelector('#toDoBtn');
-const createListField = document.querySelector('#listFields');
-const addItem = document.querySelector('#childContainer');
+const addToYourList = document.querySelector('#listFields');
+const childContainer = document.querySelector('#childContainer');
 
 if (createListItem) {
   createListItem.addEventListener('click', () => {
-    const addItemContainer = document.createElement('div');
+    const removeListContainer = document.createElement('div');
     const listItem = document.createElement('input');
     const removeBtn = document.createElement('button');
 
-    addItemContainer.className = 'addContainer';
+    removeListContainer.className = 'addContainer';
     listItem.className = 'toDoField';
     removeBtn.className = 'removeItemBtn';
     removeBtn.innerText = 'Remove';
 
-    addItem.appendChild(addItemContainer);
-    addItemContainer.appendChild(listItem);
-    addItemContainer.appendChild(removeBtn);
-    listItem.value = createListField.value;
-    createListField.value = '';
+    childContainer.appendChild(removeListContainer);
+    removeListContainer.appendChild(listItem);
+    removeListContainer.appendChild(removeBtn);
+    listItem.value = addToYourList.value;
+    addToYourList.value = '';
 
     const itemRemoveBtn = document.querySelectorAll('.removeItemBtn');
     if (itemRemoveBtn[0]) {
