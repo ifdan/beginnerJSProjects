@@ -2,17 +2,20 @@ body {
   background-color: #fb4344;
   font-family: 'Anton', sans-serif;
 }
+
 .contentContainer {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
 }
+
 h1 {
   text-align: center;
   margin: 2rem 0;
   width: 100%;
 }
+
 /* Change Background */
 .button-Background {
   padding: 10px 15px;
@@ -22,9 +25,11 @@ h1 {
   color: #fff;
   cursor: pointer;
 }
+
 .button-Background:active {
   opacity: 0.5;
 }
+
 /* Letter Counter */
 .input-field {
   caret-color: #fb4344;
@@ -35,12 +40,15 @@ h1 {
   font-size: 1.5em;
   margin: 0 2rem;
 }
+
 .input-field::placeholder {
-  color: #fb4344;;
+  color: #fb4344;
 }
+
 .output-text {
   font-size: 1.2em;
 }
+
 /* Counter */
 .countContainer {
   border: 2px solid #fff;
@@ -50,12 +58,14 @@ h1 {
   padding-bottom: 18px;
   width: 175px;
 }
+
 .currentNumber {
   color: #fff;
   font-size: 3em;
   text-align: center;
-  width: 100%
+  width: 100%;
 }
+
 .countBtn {
   border: 2px solid #fff;
   border-radius: 50px;
@@ -65,10 +75,12 @@ h1 {
   width: 2.5rem;
   height: 2.5rem;
 }
+
 .countBtn:hover {
   background-color: rgba(0, 0, 0, 0.5);
   transition: background-color 0.5s;
 }
+
 /* To Do List */
 .listContainer {
   margin: 0 auto;
@@ -77,6 +89,7 @@ h1 {
   flex-flow: row wrap;
   max-width: 350px;
 }
+
 .toDoField {
   caret-color: #fb4344;
   border: 2px solid #000;
@@ -85,13 +98,15 @@ h1 {
   font-size: 1.2em;
   margin-bottom: 1rem;
 }
+
 .toDoField::placeholder {
-  color: #fb4344;;
+  color: #fb4344;
 }
+
 .addItemBtn {
   border: 2px solid #000;
   border-radius: 0 5px 5px 0;
-  background-color: #000;;
+  background-color: #000;
   color: #fff;
   cursor: pointer;
   font-size: 1em;
@@ -99,9 +114,11 @@ h1 {
   width: 90px;
   height: 40px;
 }
+
 .addItemBtn:active {
   opacity: 0.5;
 }
+
 .removeItemBtn {
   border: 2px solid #000;
   border-radius: 0 5px 5px 0;
@@ -113,16 +130,19 @@ h1 {
   width: 90px;
   height: 40px;
 }
+
 /* To Do List */
 #parentContainer {
   display: flex;
 }
+
 #childContainer {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
 }
+
 .addContainer {
   display: flex;
 }
