@@ -15,44 +15,34 @@
     <div class="contentContainer">
       <h1>Tic Tac Toe</h1>
       <div>
-        <div class="a-1 board"></div>
-        <div class="a-2 board"></div>
-        <div class="a-3 board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
       </div>
       <div>
-        <div class="b-1 board"></div>
-        <div class="b-2 board"></div>
-        <div class="b-3 board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
       </div>
       <div>
-        <div class="c-1 board"></div>
-        <div class="c-2 board"></div>
-        <div class="c-3 board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
+        <div class="board"></div>
       </div>
       <button type="button" class="userXBtn">User X First</button>
       <button type="button" class="userOBtn">User O First</button>
     </div>
     <script src="scripts.js"></script>
     <script>
-      // next step is define that the first click is the user chosen.
+      // test variable for me
+      const container = document.querySelector('.contentContainer');
       const userX = 'X';
       const userO = 'O';
       let user = ' ';
       let value = ' ';
       const userXBtn = document.querySelector('.userXBtn');
       const userOBtn = document.querySelector('.userOBtn');
-      const aOne = document.querySelector('.a-1');
-      const aTwo = document.querySelector('.a-2');
-      const aThree = document.querySelector('.a-3');
-      const bOne = document.querySelector('.b-1');
-      const bTwo = document.querySelector('.b-2');
-      const bThree = document.querySelector('.b-3');
-      const cOne = document.querySelector('.c-1');
-      const cTwo = document.querySelector('.c-2');
-      const cThree = document.querySelector('.c-3');
-      const board = [aOne, aTwo, aThree, bOne, bTwo, bThree, cOne, cTwo, cThree];
-
-      // turn board into a numerical array. Assign all same class. Return the HTMLcollection. Push the index value of the win parameters.
+      const board = document.querySelectorAll('.board');
 
       function pickUser(xo) {
         return xo;
@@ -73,6 +63,9 @@
             user = userO;
           } else if (user === userO) {
             user = userX;
+          }
+          if (board[0].textContent && board[1].textContent && board[2].textContent === userX) {
+            container.style.display = 'none';
           }
         }, {once : true});
       }
