@@ -64,8 +64,40 @@
           } else if (user === userO) {
             user = userX;
           }
+
+          // Writing out all these conditional statements is first, not smart and second doesn't work for my use case. If both X and O are in a line, it counts as a win. 
           if (board[0].textContent && board[1].textContent && board[2].textContent === userX) {
-            container.style.display = 'none';
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[3].textContent && board[4].textContent && board[5].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[6].textContent && board[7].textContent && board[8].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[0].textContent && board[3].textContent && board[6].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[1].textContent && board[4].textContent && board[7].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[0].textContent && board[4].textContent && board[8].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          } else if (board[2].textContent && board[4].textContent && board[6].textContent === userX) {
+            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
+          }
+
+          if (board[0].textContent && board[1].textContent && board[2].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[3].textContent && board[4].textContent && board[5].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[6].textContent && board[7].textContent && board[8].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[0].textContent && board[3].textContent && board[6].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[1].textContent && board[4].textContent && board[7].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[2].textContent && board[5].textContent && board[8].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[0].textContent && board[4].textContent && board[8].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
+          } else if (board[2].textContent && board[4].textContent && board[6].textContent === userO) {
+            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
           }
         }, {once : true});
       }
