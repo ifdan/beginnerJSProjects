@@ -48,6 +48,7 @@
         return xo;
       }
 
+      // I created functions to hold my winning conditions. This is an improvment from last night. Now the conditions do not evaluate to true if X and O are in the same row. But now it will evaluate to true if the value is anywhere on the board across all my conditions. I need to make these stricter. There is still a better way to do this. Just using the array that the HTMLCollection is stored in. That's a good use case to use some methods and properties that I haven't utilized for arrays.
       function userXWins() {
         if (board[0].textContent === userX && board[1].textContent === userX && board[2].textContent === userX) {
           container.innerHTML = `<h1>${userX} WINS</h1>`;
