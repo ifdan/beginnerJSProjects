@@ -48,6 +48,46 @@
         return xo;
       }
 
+      function userXWins() {
+        if (board[0].textContent === userX && board[1].textContent === userX && board[2].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[3].textContent === userX && board[4].textContent === userX && board[5].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[6].textContent === userX && board[7].textContent === userX && board[8].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[0].textContent === userX && board[3].textContent === userX && board[6].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[1].textContent === userX && board[4].textContent === userX && board[7].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[2].textContent === userX && board[5].textContent === userX && board[8].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[0].textContent === userX && board[4].textContent === userX && board[6].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        } else if (board[2].textContent === userX && board[4].textContent === userX && board[6].textContent === userX) {
+          container.innerHTML = `<h1>${userX} WINS</h1>`;
+        }
+      }
+
+      function userOWins() {
+        if (board[0].textContent === userO && board[1].textContent === userO && board[2].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[3].textContent === userO && board[4].textContent === userO && board[5].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[6].textContent === userO && board[7].textContent === userO && board[8].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[0].textContent === userO && board[3].textContent === userO && board[6].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[1].textContent === userO && board[4].textContent === userO && board[7].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[2].textContent === userO && board[5].textContent === userO && board[8].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[0].textContent === userO && board[4].textContent === userO && board[6].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        } else if (board[2].textContent === userO && board[4].textContent === userO && board[6].textContent === userO) {
+          container.innerHTML = `<h1>${userO} WINS</h1>`;
+        }
+      }
+
       userXBtn.addEventListener('click', () => {
         user = pickUser(userX);
       });
@@ -64,41 +104,8 @@
           } else if (user === userO) {
             user = userX;
           }
-
-          // Writing out all these conditional statements is first, not smart and second doesn't work for my use case. If both X and O are in a line, it counts as a win. 
-          if (board[0].textContent && board[1].textContent && board[2].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[3].textContent && board[4].textContent && board[5].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[6].textContent && board[7].textContent && board[8].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[0].textContent && board[3].textContent && board[6].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[1].textContent && board[4].textContent && board[7].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[0].textContent && board[4].textContent && board[8].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          } else if (board[2].textContent && board[4].textContent && board[6].textContent === userX) {
-            container.innerHTML = `<h1>Player ${userX} WINS</h1>`;
-          }
-
-          if (board[0].textContent && board[1].textContent && board[2].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[3].textContent && board[4].textContent && board[5].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[6].textContent && board[7].textContent && board[8].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[0].textContent && board[3].textContent && board[6].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[1].textContent && board[4].textContent && board[7].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[2].textContent && board[5].textContent && board[8].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[0].textContent && board[4].textContent && board[8].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          } else if (board[2].textContent && board[4].textContent && board[6].textContent === userO) {
-            container.innerHTML = `<h1>Player ${userO} WINS</h1>`;
-          }
+          userXWins();
+          userOWins();
         }, {once : true});
       }
     </script>
