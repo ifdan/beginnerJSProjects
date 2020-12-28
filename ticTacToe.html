@@ -1,3 +1,5 @@
+<!-- I put this on Pause. I'm having trouble with winning game conditions. I stored the winning condions in a two dimensional array but I can't get the index value and the innerHTML from that index value together from the board array to compare to the winning conditions -->
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -34,59 +36,30 @@
     </div>
     <script src="scripts.js"></script>
     <script>
-      // test variable for me
-      const container = document.querySelector('.contentContainer');
       const userX = 'X';
       const userO = 'O';
       let user = ' ';
       let value = ' ';
       const userXBtn = document.querySelector('.userXBtn');
       const userOBtn = document.querySelector('.userOBtn');
-      const board = document.querySelectorAll('.board');
+      const board = Array.from(document.querySelectorAll('.board'));
+      const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+
+      function winner(position) {
+        console.log(position);
+      }
 
       function pickUser(xo) {
         return xo;
-      }
-
-      // I created functions to hold my winning conditions. This is an improvment from last night. Now the conditions do not evaluate to true if X and O are in the same row. But now it will evaluate to true if the value is anywhere on the board across all my conditions. I need to make these stricter. There is still a better way to do this. Just using the array that the HTMLCollection is stored in. That's a good use case to use some methods and properties that I haven't utilized for arrays.
-      function userXWins() {
-        if (board[0].textContent === userX && board[1].textContent === userX && board[2].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[3].textContent === userX && board[4].textContent === userX && board[5].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[6].textContent === userX && board[7].textContent === userX && board[8].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[0].textContent === userX && board[3].textContent === userX && board[6].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[1].textContent === userX && board[4].textContent === userX && board[7].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[2].textContent === userX && board[5].textContent === userX && board[8].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[0].textContent === userX && board[4].textContent === userX && board[6].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        } else if (board[2].textContent === userX && board[4].textContent === userX && board[6].textContent === userX) {
-          container.innerHTML = `<h1>${userX} WINS</h1>`;
-        }
-      }
-
-      function userOWins() {
-        if (board[0].textContent === userO && board[1].textContent === userO && board[2].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[3].textContent === userO && board[4].textContent === userO && board[5].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[6].textContent === userO && board[7].textContent === userO && board[8].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[0].textContent === userO && board[3].textContent === userO && board[6].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[1].textContent === userO && board[4].textContent === userO && board[7].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[2].textContent === userO && board[5].textContent === userO && board[8].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[0].textContent === userO && board[4].textContent === userO && board[6].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        } else if (board[2].textContent === userO && board[4].textContent === userO && board[6].textContent === userO) {
-          container.innerHTML = `<h1>${userO} WINS</h1>`;
-        }
       }
 
       userXBtn.addEventListener('click', () => {
@@ -99,14 +72,13 @@
 
       for (let i = 0; i < board.length; i++) {
         board[i].addEventListener('click', () => {
-          board[i].textContent = user;
+          board[i].innerHTML = user;
           if (user === userX) {
             user = userO;
           } else if (user === userO) {
             user = userX;
           }
-          userXWins();
-          userOWins();
+          winner(board[i].innerHTML);
         }, {once : true});
       }
     </script>
