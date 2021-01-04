@@ -1,5 +1,3 @@
-<!-- I put this on Pause. I'm having trouble with winning game conditions. I stored the winning condions in a two dimensional array but I can't get the index value and the innerHTML from that index value together from the board array to compare to the winning conditions -->
-
 <html>
   <head>
     <meta charset="UTF-8">
@@ -39,10 +37,11 @@
       const userX = 'X';
       const userO = 'O';
       let user = ' ';
-      let value = ' ';
       const userXBtn = document.querySelector('.userXBtn');
       const userOBtn = document.querySelector('.userOBtn');
       const board = Array.from(document.querySelectorAll('.board'));
+      const X = [];
+      const O = [];
       const winConditions = [
         [0, 1, 2],
         [3, 4, 5],
@@ -54,8 +53,10 @@
         [2, 4, 6]
       ];
 
-      function winner(position) {
-        console.log(position);
+      function winner(X, winConditions) {
+        if (X.sort() === winConditions[0]) {
+          console.log(true);
+        } 
       }
 
       function pickUser(xo) {
@@ -74,11 +75,13 @@
         board[i].addEventListener('click', () => {
           board[i].innerHTML = user;
           if (user === userX) {
+            X.push(i);
             user = userO;
           } else if (user === userO) {
             user = userX;
+            O.push(i);
           }
-          winner(board[i].innerHTML);
+          winner(X, winConditions);
         }, {once : true});
       }
     </script>
