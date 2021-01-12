@@ -53,10 +53,142 @@
         [2, 4, 6]
       ];
 
-      function winner(X, winConditions) {
-        if (X.sort() === winConditions[0]) {
-          console.log(true);
-        } 
+      function winner(X, O, winConditions) {
+        let firstIndex = winConditions[0];
+        let newArrX0 = [];
+        let newArrO0 = [];
+        for (let i = 0; i < firstIndex.length; i++) {
+          if (X.includes(firstIndex[i])) {
+            newArrX0.push(firstIndex[i]);
+            if (newArrX0.length === 3) {
+              console.log(`${newArrX0} in X`);
+            }
+          } else if (O.includes(firstIndex[i])) {
+            newArrO0.push(firstIndex[i]);
+            if (newArrO0.length === 3) {
+              console.log(`${newArrO0} in O`);
+            }
+          }
+        }
+
+        let secondIndex = winConditions[1];
+        let newArrX1 = [];
+        let newArrO1 = [];
+        for (let i = 0; i < secondIndex.length; i++) {
+          if (X.includes(secondIndex[i])) {
+            newArrX1.push(secondIndex[i]);
+            if (newArrX1.length === 3) {
+              console.log(`${newArrX1} in X`);
+            }
+          } else if (O.includes(secondIndex[i])) {
+            newArrO1.push(secondIndex[i]);
+            if (newArrO1.length === 3) {
+              console.log(`${newArrO1} in O`);
+            }
+          }
+        }
+
+        let thirdIndex = winConditions[2];
+        let newArrX2 = [];
+        let newArrO2 = [];
+        for (let i = 0; i < thirdIndex.length; i++) {
+          if (X.includes(thirdIndex[i])) {
+            newArrX2.push(thirdIndex[i]);
+            if (newArrX2.length === 3) {
+              console.log(`${newArrX2} in X`);
+            }
+          } else if (O.includes(thirdIndex[i])) {
+            newArrO2.push(thirdIndex[i]);
+            if (newArrO2.length === 3) {
+              console.log(`${newArrO2} in O`);
+            }
+          }
+        }
+
+        let fourthIndex = winConditions[3];
+        let newArrX3 = [];
+        let newArrO3 = [];
+        for (let i = 0; i < fourthIndex.length; i++) {
+          if (X.includes(fourthIndex[i])) {
+            newArrX3.push(fourthIndex[i]);
+            if (newArrX3.length === 3) {
+              console.log(`${newArrX3} in X`);
+            }
+          } else if (O.includes(fourthIndex[i])) {
+            newArrO3.push(fourthIndex[i]);
+            if (newArrO3.length === 3) {
+              console.log(`${newArrO3} in O`);
+            }
+          }
+        }
+
+        let fifthIndex = winConditions[4];
+        let newArrX4 = [];
+        let newArrO4 = [];
+        for (let i = 0; i < fifthIndex.length; i++) {
+          if (X.includes(fifthIndex[i])) {
+            newArrX4.push(fifthIndex[i]);
+            if (newArrX4.length === 3) {
+              console.log(`${newArrX4} in X`);
+            }
+          } else if (O.includes(fifthIndex[i])) {
+            newArrO4.push(fifthIndex[i]);
+            if (newArrO4.length === 3) {
+              console.log(`${newArrO4} in O`);
+            }
+          }
+        }
+
+        let sixthIndex = winConditions[5];
+        let newArrX5 = [];
+        let newArrO5 = [];
+        for (let i = 0; i < sixthIndex.length; i++) {
+          if (X.includes(sixthIndex[i])) {
+            newArrX5.push(sixthIndex[i]);
+            if (newArrX5.length === 3) {
+              console.log(`${newArrX5} in X`);
+            }
+          } else if (O.includes(sixthIndex[i])) {
+            newArrO5.push(sixthIndex[i]);
+            if (newArrO5.length === 3) {
+              console.log(`${newArrO5} in O`);
+            }
+          }
+        }
+
+        let seventhIndex = winConditions[6];
+        let newArrX6 = [];
+        let newArrO6 = [];
+        for (let i = 0; i < seventhIndex.length; i++) {
+          if (X.includes(seventhIndex[i])) {
+            newArrX6.push(seventhIndex[i]);
+            if (newArrX6.length === 3) {
+              console.log(`${newArrX6} in X`);
+            }
+          } else if (O.includes(seventhIndex[i])) {
+            newArrO6.push(seventhIndex[i]);
+            if (newArrO6.length === 3) {
+              console.log(`${newArrO6} in O`);
+            }
+          }
+        }
+
+        let eigthIndex = winConditions[7];
+        let newArrX7 = [];
+        let newArrO7 = [];
+        for (let i = 0; i < eigthIndex.length; i++) {
+          if (X.includes(eigthIndex[i])) {
+            newArrX7.push(eigthIndex[i]);
+            if (newArrX7.length === 3) {
+              console.log(`${newArrX7} in X`);
+            }
+          } else if (O.includes(eigthIndex[i])) {
+            newArrO7.push(eigthIndex[i]);
+            if (newArrO7.length === 3) {
+              console.log(`${newArrO7} in O`);
+            }
+          }
+        }
       }
 
       function pickUser(xo) {
@@ -81,7 +213,7 @@
             user = userX;
             O.push(i);
           }
-          winner(X, winConditions);
+          winner(X, O, winConditions);
         }, {once : true});
       }
     </script>
