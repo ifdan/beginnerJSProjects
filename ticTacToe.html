@@ -5,40 +5,121 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <style>
+      h2 {
+        color: #ecf0f1;
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .x-button,
+      .o-button {
+        border: 5px solid #ecf0f1;
+        border-radius: 100px;
+        background-color: #fb4344;
+        color: #ecf0f1;
+        font-size: 2.5em;
+        font-family: Arial, Helvetica, sans-serif;
+        width: 7rem;
+        height: 7rem;
+        margin: 0 2rem 2rem 2rem;
+      }
+
+      .x-button:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: background-color 0.5s;
+      }
+
+      .o-button:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: background-color 0.5s;
+      }
+
+      .board-container {
+        display: none;
+        margin-top: 1rem;
+      }
+
       .board {
-        border: 1px solid #000;
-        padding: 4rem;
+        border: 2.5px solid #ecf0f1;
+        color: #ecf0f1;
+        font-size: 2.5em;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 3.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .span-hide {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s linear;
+      }
+
+      .span-show {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .first-top,
+      .first-middle,
+      .first-bottom {
+        border-left: none;
+      }
+
+      .first-top,
+      .second-top,
+      .third-top {
+        border-top: none;
+      }
+
+      .third-top,
+      .third-middle,
+      .third-bottom {
+        border-right: none;
+      }
+
+      .first-bottom,
+      .second-bottom,
+      .third-bottom {
+        border-bottom: none;
       }
     </style>
   </head>
   <body>
     <div class="contentContainer">
       <h1>Tic Tac Toe</h1>
-      <div>
-        <div class="board"></div>
-        <div class="board"></div>
-        <div class="board"></div>
+      <h2 class="sub-heading">Choose</h2>
+      <div class="board-container">
+        <div>
+          <div class="board first-top"></div>
+          <div class="board first-middle"></div>
+          <div class="board first-bottom"></div>
+        </div>
+        <div>
+          <div class="board second-top"></div>
+          <div class="board second-middle"></div>
+          <div class="board second-bottom"></div>
+        </div>
+        <div>
+          <div class="board third-top"></div>
+          <div class="board third-middle"></div>
+          <div class="board third-bottom"></div>
+        </div>
       </div>
-      <div>
-        <div class="board"></div>
-        <div class="board"></div>
-        <div class="board"></div>
-      </div>
-      <div>
-        <div class="board"></div>
-        <div class="board"></div>
-        <div class="board"></div>
-      </div>
-      <button type="button" class="userXBtn">User X First</button>
-      <button type="button" class="userOBtn">User O First</button>
+      <button type="button" class="x-button">X</button>
+      <button type="button" class="o-button">O</button>
     </div>
     <script src="scripts.js"></script>
     <script>
       const userX = 'X';
       const userO = 'O';
       let user = ' ';
-      const userXBtn = document.querySelector('.userXBtn');
-      const userOBtn = document.querySelector('.userOBtn');
+      const subHead = document.querySelector('.sub-heading');
+      const userXBtn = document.querySelector('.x-button');
+      const userOBtn = document.querySelector('.o-button');
+      const boardParent = document.querySelector('.board-container');
+      let userSpan = document.getElementsByTagName('span');
       const board = Array.from(document.querySelectorAll('.board'));
       const X = [];
       const O = [];
@@ -53,154 +134,24 @@
         [2, 4, 6]
       ];
 
-      function winner(X, O, winConditions) {
-        let firstIndex = winConditions[0];
-        let newArrX0 = [];
-        let newArrO0 = [];
-        for (let i = 0; i < firstIndex.length; i++) {
-          if (X.includes(firstIndex[i])) {
-            newArrX0.push(firstIndex[i]);
-            if (newArrX0.length === 3) {
-              console.log(`${newArrX0} in X`);
-            }
-          } else if (O.includes(firstIndex[i])) {
-            newArrO0.push(firstIndex[i]);
-            if (newArrO0.length === 3) {
-              console.log(`${newArrO0} in O`);
-            }
-          }
-        }
-
-        let secondIndex = winConditions[1];
-        let newArrX1 = [];
-        let newArrO1 = [];
-        for (let i = 0; i < secondIndex.length; i++) {
-          if (X.includes(secondIndex[i])) {
-            newArrX1.push(secondIndex[i]);
-            if (newArrX1.length === 3) {
-              console.log(`${newArrX1} in X`);
-            }
-          } else if (O.includes(secondIndex[i])) {
-            newArrO1.push(secondIndex[i]);
-            if (newArrO1.length === 3) {
-              console.log(`${newArrO1} in O`);
-            }
-          }
-        }
-
-        let thirdIndex = winConditions[2];
-        let newArrX2 = [];
-        let newArrO2 = [];
-        for (let i = 0; i < thirdIndex.length; i++) {
-          if (X.includes(thirdIndex[i])) {
-            newArrX2.push(thirdIndex[i]);
-            if (newArrX2.length === 3) {
-              console.log(`${newArrX2} in X`);
-            }
-          } else if (O.includes(thirdIndex[i])) {
-            newArrO2.push(thirdIndex[i]);
-            if (newArrO2.length === 3) {
-              console.log(`${newArrO2} in O`);
-            }
-          }
-        }
-
-        let fourthIndex = winConditions[3];
-        let newArrX3 = [];
-        let newArrO3 = [];
-        for (let i = 0; i < fourthIndex.length; i++) {
-          if (X.includes(fourthIndex[i])) {
-            newArrX3.push(fourthIndex[i]);
-            if (newArrX3.length === 3) {
-              console.log(`${newArrX3} in X`);
-            }
-          } else if (O.includes(fourthIndex[i])) {
-            newArrO3.push(fourthIndex[i]);
-            if (newArrO3.length === 3) {
-              console.log(`${newArrO3} in O`);
-            }
-          }
-        }
-
-        let fifthIndex = winConditions[4];
-        let newArrX4 = [];
-        let newArrO4 = [];
-        for (let i = 0; i < fifthIndex.length; i++) {
-          if (X.includes(fifthIndex[i])) {
-            newArrX4.push(fifthIndex[i]);
-            if (newArrX4.length === 3) {
-              console.log(`${newArrX4} in X`);
-            }
-          } else if (O.includes(fifthIndex[i])) {
-            newArrO4.push(fifthIndex[i]);
-            if (newArrO4.length === 3) {
-              console.log(`${newArrO4} in O`);
-            }
-          }
-        }
-
-        let sixthIndex = winConditions[5];
-        let newArrX5 = [];
-        let newArrO5 = [];
-        for (let i = 0; i < sixthIndex.length; i++) {
-          if (X.includes(sixthIndex[i])) {
-            newArrX5.push(sixthIndex[i]);
-            if (newArrX5.length === 3) {
-              console.log(`${newArrX5} in X`);
-            }
-          } else if (O.includes(sixthIndex[i])) {
-            newArrO5.push(sixthIndex[i]);
-            if (newArrO5.length === 3) {
-              console.log(`${newArrO5} in O`);
-            }
-          }
-        }
-
-        let seventhIndex = winConditions[6];
-        let newArrX6 = [];
-        let newArrO6 = [];
-        for (let i = 0; i < seventhIndex.length; i++) {
-          if (X.includes(seventhIndex[i])) {
-            newArrX6.push(seventhIndex[i]);
-            if (newArrX6.length === 3) {
-              console.log(`${newArrX6} in X`);
-            }
-          } else if (O.includes(seventhIndex[i])) {
-            newArrO6.push(seventhIndex[i]);
-            if (newArrO6.length === 3) {
-              console.log(`${newArrO6} in O`);
-            }
-          }
-        }
-
-        let eigthIndex = winConditions[7];
-        let newArrX7 = [];
-        let newArrO7 = [];
-        for (let i = 0; i < eigthIndex.length; i++) {
-          if (X.includes(eigthIndex[i])) {
-            newArrX7.push(eigthIndex[i]);
-            if (newArrX7.length === 3) {
-              console.log(`${newArrX7} in X`);
-            }
-          } else if (O.includes(eigthIndex[i])) {
-            newArrO7.push(eigthIndex[i]);
-            if (newArrO7.length === 3) {
-              console.log(`${newArrO7} in O`);
-            }
-          }
-        }
-      }
-
       function pickUser(xo) {
         return xo;
       }
 
       userXBtn.addEventListener('click', () => {
         user = pickUser(userX);
+        userXBtn.style.display = 'none';
+        userOBtn.style.display = 'none';
+        subHead.style.display = 'none';
+        boardParent.style.display = 'flex';
       });
 
       userOBtn.addEventListener('click', () => {
         user = pickUser(userO);
+        userXBtn.style.display = 'none';
+        userOBtn.style.display = 'none';
+        subHead.style.display = 'none';
+        boardParent.style.display = 'flex';
       });
 
       for (let i = 0; i < board.length; i++) {
@@ -215,6 +166,191 @@
           }
           winner(X, O, winConditions);
         }, {once : true});
+      }
+
+      function winner(X, O, winConditions) {
+        let firstIndex = winConditions[0];
+        let X0 = [];
+        let O0 = [];
+        for (let i = 0; i < firstIndex.length; i++) {
+          if (X.includes(firstIndex[i])) {
+            X0.push(firstIndex[i]);
+            if (X0.length === 3) {
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(firstIndex[i])) {
+            O0.push(firstIndex[i]);
+            if (O0.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let secondIndex = winConditions[1];
+        let X1 = [];
+        let O1 = [];
+        for (let i = 0; i < secondIndex.length; i++) {
+          if (X.includes(secondIndex[i])) {
+            X1.push(secondIndex[i]);
+            if (X1.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(secondIndex[i])) {
+            O1.push(secondIndex[i]);
+            if (O1.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let thirdIndex = winConditions[2];
+        let X2 = [];
+        let O2 = [];
+        for (let i = 0; i < thirdIndex.length; i++) {
+          if (X.includes(thirdIndex[i])) {
+            X2.push(thirdIndex[i]);
+            if (X2.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(thirdIndex[i])) {
+            O2.push(thirdIndex[i]);
+            if (O2.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let fourthIndex = winConditions[3];
+        let X3 = [];
+        let O3 = [];
+        for (let i = 0; i < fourthIndex.length; i++) {
+          if (X.includes(fourthIndex[i])) {
+            X3.push(fourthIndex[i]);
+            if (X3.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(fourthIndex[i])) {
+            O3.push(fourthIndex[i]);
+            if (O3.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let fifthIndex = winConditions[4];
+        let X4 = [];
+        let O4 = [];
+        for (let i = 0; i < fifthIndex.length; i++) {
+          if (X.includes(fifthIndex[i])) {
+            X4.push(fifthIndex[i]);
+            if (X4.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(fifthIndex[i])) {
+            O4.push(fifthIndex[i]);
+            if (O4.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let sixthIndex = winConditions[5];
+        let X5 = [];
+        let O5 = [];
+        for (let i = 0; i < sixthIndex.length; i++) {
+          if (X.includes(sixthIndex[i])) {
+            X5.push(sixthIndex[i]);
+            if (X5.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(sixthIndex[i])) {
+            O5.push(sixthIndex[i]);
+            if (O5.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let seventhIndex = winConditions[6];
+        let X6 = [];
+        let O6 = [];
+        for (let i = 0; i < seventhIndex.length; i++) {
+          if (X.includes(seventhIndex[i])) {
+            X6.push(seventhIndex[i]);
+            if (X6.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(seventhIndex[i])) {
+            O6.push(seventhIndex[i]);
+            if (O6.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
+
+        let eigthIndex = winConditions[7];
+        let X7 = [];
+        let O7 = [];
+        for (let i = 0; i < eigthIndex.length; i++) {
+          if (X.includes(eigthIndex[i])) {
+            X7.push(eigthIndex[i]);
+            if (X7.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userX} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          } else if (O.includes(eigthIndex[i])) {
+            O7.push(eigthIndex[i]);
+            if (O7.length === 3) {
+              boardParent.style.display = 'none';
+              boardParent.style.display = 'none';
+              subHead.innerHTML = `${userO} Is the Winner!`;
+              subHead.style.display = 'block';
+            }
+          }
+        }
       }
     </script>
   </body>
