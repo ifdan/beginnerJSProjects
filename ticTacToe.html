@@ -12,8 +12,13 @@
         margin-top: 2rem;
       }
 
-      .x-button,
-      .o-button {
+      .button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .button {
         border: 5px solid #ecf0f1;
         border-radius: 100px;
         background-color: #fb4344;
@@ -25,40 +30,32 @@
         margin: 0 2rem 2rem 2rem;
       }
 
-      .x-button:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-        transition: background-color 0.5s;
-      }
-
-      .o-button:hover {
+      .button:hover {
         background-color: rgba(0, 0, 0, 0.5);
         transition: background-color 0.5s;
       }
 
       .board-container {
-        display: none;
         margin-top: 1rem;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .board-container.fade {
+        opacity: 1;
       }
 
       .board {
         border: 2.5px solid #ecf0f1;
         color: #ecf0f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 2.5em;
         font-family: Arial, Helvetica, sans-serif;
         padding: 3.5rem;
         width: 2.5rem;
         height: 2.5rem;
-      }
-
-      .span-hide {
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.5s linear;
-      }
-
-      .span-show {
-        visibility: visible;
-        opacity: 1;
       }
 
       .first-top,
@@ -90,6 +87,10 @@
     <div class="contentContainer">
       <h1>Tic Tac Toe</h1>
       <h2 class="sub-heading">Choose</h2>
+      <div class="button-container">
+        <button type="button" class="button">X</button>
+        <button type="button" class="button">O</button>
+      </div>
       <div class="board-container">
         <div>
           <div class="board first-top"></div>
@@ -107,8 +108,6 @@
           <div class="board third-bottom"></div>
         </div>
       </div>
-      <button type="button" class="x-button">X</button>
-      <button type="button" class="o-button">O</button>
     </div>
     <script src="scripts.js"></script>
     <script>
@@ -116,10 +115,8 @@
       const userO = 'O';
       let user = ' ';
       const subHead = document.querySelector('.sub-heading');
-      const userXBtn = document.querySelector('.x-button');
-      const userOBtn = document.querySelector('.o-button');
+      const userBtns = document.querySelectorAll('.button')
       const boardParent = document.querySelector('.board-container');
-      let userSpan = document.getElementsByTagName('span');
       const board = Array.from(document.querySelectorAll('.board'));
       const X = [];
       const O = [];
@@ -138,22 +135,21 @@
         return xo;
       }
 
-      userXBtn.addEventListener('click', () => {
-        user = pickUser(userX);
-        userXBtn.style.display = 'none';
-        userOBtn.style.display = 'none';
-        subHead.style.display = 'none';
-        boardParent.style.display = 'flex';
-      });
-
-      userOBtn.addEventListener('click', () => {
-        user = pickUser(userO);
-        userXBtn.style.display = 'none';
-        userOBtn.style.display = 'none';
-        subHead.style.display = 'none';
-        boardParent.style.display = 'flex';
-      });
-
+      for (let i = 0; i < userBtns.length; i++) {
+        userBtns[i].addEventListener('click', () => {
+          userBtns[0].style.display = 'none';
+          userBtns[1].style.display = 'none';
+          subHead.style.display = 'none';
+          boardParent.style.display = 'flex';
+          boardParent.classList.toggle('fade');
+          if (i === 0) {
+            user = pickUser(userX);
+          } else {
+            user = pickUser(userO);
+          }
+        });
+      }
+      
       for (let i = 0; i < board.length; i++) {
         board[i].addEventListener('click', () => {
           board[i].innerHTML = user;
