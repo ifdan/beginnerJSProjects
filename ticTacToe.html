@@ -37,7 +37,6 @@
     }
 
     .board-container {
-      display: none;
       margin-top: 1rem;
       opacity: 0;
       transition: opacity 1s;
@@ -117,6 +116,7 @@
     const userX = 'X';
     const userO = 'O';
     let user = ' ';
+    var count = 0;
     const subHead = document.querySelector('.sub-heading');
     const userBtns = document.querySelectorAll('.button')
     const boardParent = document.querySelector('.board-container');
@@ -163,13 +163,14 @@
           user = userX;
           O.push(i);
         }
-        winner(X, O, winConditions);
+        count++;
+        winner(X, O, winConditions, count);
       }, {
         once: true
       });
     }
 
-    function winner(X, O, winConditions) {
+    function winner(X, O, winConditions, count) {
       let firstIndex = winConditions[0];
       let X0 = [];
       let O0 = [];
@@ -351,6 +352,11 @@
             subHead.style.display = 'block';
           }
         }
+      }
+      if (count === 9 && X0.length !== 3 && O0.length !== 3 && X1.length !== 3 && O1.length !== 3 && X2.length !== 3 && O2.length !== 3 && X3.length !== 3 && O3.length !== 3 && X4.length !== 3 && O4.length !== 3 && X5.length !== 3 && O5.length !== 3 && X0.length !== 3 && O0.length !== 3 && X6.length !== 3 && O6.length !== 3 && X7.length !== 3 && O7.length !== 3) {
+        boardParent.style.display = 'none';
+        subHead.innerHTML = 'Tie!';
+        subHead.style.display = 'block';
       }
     }
   </script>
