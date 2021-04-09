@@ -135,15 +135,14 @@
       </div>
   </div>
   <script>
-    let rotateLine = 0;
     function getTime() {
       const today = new Date();
       const hours = today.getHours();
       const minutes = today.getMinutes();
       const seconds = today.getSeconds();
       const minutesLine = document.querySelector('.analog-line-minutes');
+      let rotateLine = seconds * 6;
       minutesLine.style.rotate = (`${rotateLine}deg`);
-      rotateLine += 6;
     }
     let clock = setInterval(getTime, 1000);
   </script>
