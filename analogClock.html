@@ -10,6 +10,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: absolute;
+      top: 150px;
       border: 2px solid #fff;
       border-radius: 100%;
       width: 200px;
@@ -23,6 +25,16 @@
       position: absolute;
       width: 4px;
       height: 4px;
+      z-index: 1;
+    }
+
+    .analog-line-minutes {
+      background: #000;
+      position: absolute;
+      left: 99px;
+      height: 2px;
+      width: 70px;
+      transform-origin: 2% 2%;
     }
 
     .analog-clock-line {
@@ -119,17 +131,21 @@
         <div class="analog-clock-line analog-line-ten"></div>
         <div class="analog-clock-line analog-line-eleven"></div>
         <div class="analog-clock-line analog-line-twelve"></div>
+        <div class="analog-line-minutes"></div>
       </div>
   </div>
   <script>
-    // function getTime() {
-    //   const today = new Date();
-    //   const hours = today.getHours();
-    //   const minutes = today.getMinutes();
-    //   const seconds = today.getSeconds();
-    // }
-
-    // let clock = setInterval(getTime, 1000);
+    let rotateLine = 0;
+    function getTime() {
+      const today = new Date();
+      const hours = today.getHours();
+      const minutes = today.getMinutes();
+      const seconds = today.getSeconds();
+      const minutesLine = document.querySelector('.analog-line-minutes');
+      minutesLine.style.rotate = (`${rotateLine}deg`);
+      rotateLine += 6;
+    }
+    let clock = setInterval(getTime, 1000);
   </script>
   <script src="scripts.js"></script>
 </body>
