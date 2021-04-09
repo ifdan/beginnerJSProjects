@@ -141,7 +141,7 @@
       const minutes = today.getMinutes();
       const seconds = today.getSeconds();
       const minutesLine = document.querySelector('.analog-line-minutes');
-      let rotateLine = seconds * 6;
+      const rotateLine = (seconds * 6) - 90;
       minutesLine.style.rotate = (`${rotateLine}deg`);
     }
     let clock = setInterval(getTime, 1000);
