@@ -1,0 +1,137 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Analog Clock</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    .analog-clock-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #fff;
+      border-radius: 100%;
+      width: 200px;
+      height: 200px;
+    }
+
+    .analog-clock-center {
+      background-color: #fff;
+      border: 2px solid #fff;
+      border-radius: 100%;
+      position: absolute;
+      width: 4px;
+      height: 4px;
+    }
+
+    .analog-clock-line {
+      background-color: #fff;
+      height: 2px;
+      width: 20px;
+      position: relative;
+    }
+
+    .analog-line-one {
+      left: 135px;
+      bottom: 73px;
+      transform: rotate(125deg);
+    }
+
+    .analog-line-two {
+      left: 151px;
+      bottom: 40px;
+      transform: rotate(150deg);
+    }
+
+    .analog-line-three {
+      left: 145px;
+    }
+
+    .analog-line-four {
+      left: 119px;
+      top: 40px;
+      transform: rotate(30deg);
+    }
+
+    .analog-line-five {
+      left: 72px;
+      top: 72px;
+      transform: rotate(55deg);
+    }
+
+    .analog-line-six {
+      left: 9px;
+      top: 87px;
+      transform: rotate(90deg);
+    }
+
+    .analog-line-seven {
+      right: 60px;
+      top: 70px;
+      transform: rotate(125deg);
+    }
+
+    .analog-line-eight {
+      right: 105px;
+      top: 38px;
+      transform: rotate(150deg);
+    }
+
+    .analog-line-nine {
+      right: 130px;
+    }
+
+    .analog-line-ten {
+      right: 133px;
+      bottom: 46px;
+      transform: rotate(30deg);
+    }
+
+    .analog-line-eleven {
+      right: 117px;
+      bottom: 74px;
+      transform: rotate(55deg);
+    }
+
+    .analog-line-twelve {
+      right: 91px;
+      bottom: 86px;
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contentContainer">
+    <h1>ANALOG CLOCK</h1>
+      <div class="analog-clock-container">
+        <div class="analog-clock-center"></div>
+        <div class="analog-clock-line analog-line-one"></div>
+        <div class="analog-clock-line analog-line-two"></div>
+        <div class="analog-clock-line analog-line-three"></div>
+        <div class="analog-clock-line analog-line-four"></div>
+        <div class="analog-clock-line analog-line-five"></div>
+        <div class="analog-clock-line analog-line-six"></div>
+        <div class="analog-clock-line analog-line-seven"></div>
+        <div class="analog-clock-line analog-line-eight"></div>
+        <div class="analog-clock-line analog-line-nine"></div>
+        <div class="analog-clock-line analog-line-ten"></div>
+        <div class="analog-clock-line analog-line-eleven"></div>
+        <div class="analog-clock-line analog-line-twelve"></div>
+      </div>
+  </div>
+  <script>
+    // function getTime() {
+    //   const today = new Date();
+    //   const hours = today.getHours();
+    //   const minutes = today.getMinutes();
+    //   const seconds = today.getSeconds();
+    // }
+
+    // let clock = setInterval(getTime, 1000);
+  </script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
