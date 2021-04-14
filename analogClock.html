@@ -157,20 +157,20 @@
   <script>
     function getTime() {
       const today = new Date();
-      const hours = today.getHours();
       const minutes = today.getMinutes();
+      const hours = today.getHours();
       const seconds = today.getSeconds();
       const secondsLine = document.querySelector('.analog-line-seconds');
       const minutesLine = document.querySelector('.analog-line-minutes');
       const hoursLine = document.querySelector('.analog-line-hours');
-      let rotateLineSeconds = (seconds * 6) - 90;
-      let rotateLineMinutes = (minutes * 6) - 90;
-      let rotateLineHours = (hours * 30) - 90;
+      const rotateLineSeconds = (seconds * 6) - 90;
+      const rotateLineMinutes = (minutes * 6) - 90;
+      const rotateLineHours = (hours * 30) - 90;
       secondsLine.style.rotate = (`${rotateLineSeconds}deg`);
       minutesLine.style.rotate = (`${rotateLineMinutes}deg`);
-      hoursLine.style.rotate = (`${rotateLineHours}deg`);
+      hoursLine.style.rotate =  (`${rotateLineHours}deg`);
     }
-    let clock = setInterval(getTime, 1000);
+    const clock = setInterval(getTime, 1000);
   </script>
   <script src="scripts.js"></script>
 </body>
