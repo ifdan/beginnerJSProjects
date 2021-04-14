@@ -224,3 +224,128 @@ h1 {
 .third-bottom {
   border-bottom: none;
 }
+
+/* Analog Clock */
+.analog-clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 150px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+}
+
+.analog-clock-center {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  z-index: 2;
+}
+
+.analog-line-seconds {
+  background-color: #000;
+  position: absolute;
+  left: 100px;
+  height: 2px;
+  width: 70px;
+  transform-origin: left center;
+  z-index: 1;
+}
+
+.analog-line-minutes {
+  background-color: #fff;
+  position: absolute;
+  left: 100px;
+  height: 2px;
+  width: 65px;
+  transform-origin: left center;
+}
+
+.analog-line-hours {
+  background-color: #fff;
+  position: absolute;
+  left: 100px;
+  height: 2px;
+  width: 50px;
+  transform-origin: left center;
+}
+
+.analog-clock-line {
+  background-color: #fff;
+  height: 2px;
+  width: 20px;
+  position: absolute;
+}
+
+.analog-line-one {
+  top: 26px;
+  right: 48px;
+  transform: rotate(-60deg);
+}
+
+.analog-line-two {
+  top: 56.5px;
+  right: 16px;
+  transform: rotate(-30deg);
+}
+
+.analog-line-three {
+  right: 5px;
+}
+
+.analog-line-four {
+  bottom: 56.5px;
+  right: 16px;
+  transform: rotate(30deg);
+}
+
+.analog-line-five {
+  bottom: 25.5px;
+  right: 48.5px;
+  transform: rotate(60deg);
+}
+
+.analog-line-six {
+  bottom: 15px;
+  transform: rotate(90deg);
+}
+
+.analog-line-seven {
+  bottom: 26px;
+  left: 48px;
+  transform: rotate(120deg);
+}
+
+.analog-line-eight {
+  bottom: 56.5px;
+  left: 16px;
+  transform: rotate(150deg);
+}
+
+.analog-line-nine {
+  left: 5px;
+}
+
+.analog-line-ten {
+  top: 56.5px;
+  left: 16px;
+  transform: rotate(210deg);
+}
+
+.analog-line-eleven {
+  top: 25.5px;
+  left: 48.5px;
+  transform: rotate(240deg);
+}
+
+.analog-line-twelve {
+  left: 90px;
+  top: 15px;
+  transform: rotate(90deg);
+}

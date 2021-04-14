@@ -312,3 +312,20 @@ function ticTacToe(userBtns) {
     }
   }
 }
+
+// Analog Clock
+function getTime() {
+  const today = new Date();
+  const minutes = today.getMinutes();
+  const hours = today.getHours();
+  const seconds = today.getSeconds();
+  const secondsLine = document.querySelector('.analog-line-seconds');
+  const minutesLine = document.querySelector('.analog-line-minutes');
+  const hoursLine = document.querySelector('.analog-line-hours');
+  const rotateLineSeconds = (seconds * 6) - 90;
+  const rotateLineMinutes = (minutes * 6) - 90;
+  const rotateLineHours = (hours * 30) - 90;
+  secondsLine.style.rotate = (`${rotateLineSeconds}deg`);
+  minutesLine.style.rotate = (`${rotateLineMinutes}deg`);
+  hoursLine.style.rotate =  (`${rotateLineHours}deg`);
+}
