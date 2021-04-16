@@ -1,0 +1,84 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slider</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    .slider-container {
+      border: 3px solid #fff;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+
+    .arrow-left {
+      align-self: center;
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-right: 20px solid #fff;
+    }
+
+    .arrow-right {
+      align-self: center;
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 20px solid #fff;
+    }
+
+    img {
+      width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contentContainer">
+    <h1>IMAGE SLIDER</h1>
+    <div class="arrow-left"></div>
+    <div class="slider-container">
+      <img src="images/one.png" alt="Test images">
+      <img src="images/two.jpg" alt="Test images">
+      <img src="images/three.jpg" alt="Test images">
+      <img src="images/four.jpg" alt="Test images">
+    </div>
+    <div class="arrow-right"></div>
+  </div>
+
+  <script>
+    const images = document.getElementsByTagName("img");
+    for (let i = 0; i < 3; i++) {
+      images[i].style.display = 'none';
+    }
+    const imageContainer = document.querySelector(".slider-container");
+    const leftArrow = document.querySelector(".arrow-left");
+    const rightArrow = document.querySelector(".arrow-right");
+
+    function sortImages(a, b) {
+      if (a === imageContainer.lastElementChild) {
+        a.style.display = 'none';
+        imageContainer.append(b);
+        b.style.display = 'block';
+      } else {
+        a.style.display = 'none';
+        imageContainer.prepend(b);
+        b.style.display = 'block';
+      }
+    }
+
+    rightArrow.addEventListener('click', () => {
+      sortImages(imageContainer.lastElementChild, imageContainer.firstElementChild);
+    });
+
+    leftArrow.addEventListener('click', () => {
+      sortImages(imageContainer.firstElementChild, imageContainer.lastElementChild);
+    });
+  </script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
