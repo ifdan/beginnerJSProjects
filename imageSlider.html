@@ -31,7 +31,8 @@
     }
 
     img {
-      width: 400px;
+      display: none;
+      width: 600px;
     }
   </style>
 </head>
@@ -50,32 +51,32 @@
   </div>
 
   <script>
-    const images = document.getElementsByTagName("img");
-    for (let i = 0; i < 3; i++) {
-      images[i].style.display = 'none';
-    }
-    const imageContainer = document.querySelector(".slider-container");
+    let keepTrack = 0;
+    let images = Array.from(document.images);
     const leftArrow = document.querySelector(".arrow-left");
     const rightArrow = document.querySelector(".arrow-right");
 
-    function sortImages(a, b) {
-      if (a === imageContainer.lastElementChild) {
-        a.style.display = 'none';
-        imageContainer.append(b);
-        b.style.display = 'block';
-      } else {
-        a.style.display = 'none';
-        imageContainer.prepend(b);
-        b.style.display = 'block';
-      }
-    }
+    window.addEventListener('load', () => {
+      images[0].style.display = 'block';
+      images[0].classList.add("cool");
+    });
 
     rightArrow.addEventListener('click', () => {
-      sortImages(imageContainer.lastElementChild, imageContainer.firstElementChild);
+      images[keepTrack].style.display = 'none';
+      keepTrack++;
+      if (keepTrack >= images.length) {
+        keepTrack = 0;
+      }
+      images[keepTrack].style.display = 'block';
     });
 
     leftArrow.addEventListener('click', () => {
-      sortImages(imageContainer.firstElementChild, imageContainer.lastElementChild);
+      images[keepTrack].style.display = 'none';
+      keepTrack--;
+      if (keepTrack < 0) {
+        keepTrack = images.length - 1;
+      }
+      images[keepTrack].style.display = 'block';
     });
   </script>
   <script src="scripts.js"></script>
