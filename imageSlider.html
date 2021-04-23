@@ -44,9 +44,14 @@
       animation-name: slideRight;
     }
 
+    .slideLeft {
+      animation-duration: 300ms;
+      animation-name: slideLeft;
+    }
+
     @keyframes slideRight {
       from {
-        left: 25rem;
+        left: 37.5rem;
       }
 
       to {
@@ -54,14 +59,9 @@
       }
     }
 
-    .slideLeft {
-      animation-duration: 300ms;
-      animation-name: slideLeft;
-    }
-
     @keyframes slideLeft {
       from {
-        right: 25rem;
+        right: 37.5rem;
       }
 
       to {
@@ -85,20 +85,18 @@
   </div>
 
   <script>
+    const images = document.images;
     let keepTrack = 0;
-    let images = Array.from(document.images);
-    const leftArrow = document.querySelector(".arrow-left");
-    const rightArrow = document.querySelector(".arrow-right");
 
     window.addEventListener('load', () => {
       images[0].style.display = 'block';
     });
 
-    rightArrow.addEventListener('click', () => {
+    document.querySelector(".arrow-right").addEventListener('click', () => {
       images[keepTrack].style.display = 'none';
       keepTrack++;
       if (keepTrack >= images.length) {
-        keepTrack = 0
+        keepTrack = 0;
       }
       images[keepTrack].style.display = 'block';
       if (images[keepTrack].className === "slideLeft") {
@@ -108,7 +106,7 @@
       }
     });
 
-    leftArrow.addEventListener('click', () => {
+    document.querySelector(".arrow-left").addEventListener('click', () => {
       images[keepTrack].style.display = 'none';
       keepTrack--;
       if (keepTrack < 0) {
