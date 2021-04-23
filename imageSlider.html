@@ -7,9 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <style>
     .slider-container {
+      background-color: #000;
       border: 3px solid #fff;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
+      width: 600px;
+      overflow: hidden;
     }
 
     .arrow-left {
@@ -32,7 +35,38 @@
 
     img {
       display: none;
+      position: relative;
       width: 600px;
+    }
+
+    .slideRight {
+      animation-duration: 300ms;
+      animation-name: slideRight;
+    }
+
+    @keyframes slideRight {
+      from {
+        left: 25rem;
+      }
+
+      to {
+        left: 0;
+      }
+    }
+
+    .slideLeft {
+      animation-duration: 300ms;
+      animation-name: slideLeft;
+    }
+
+    @keyframes slideLeft {
+      from {
+        right: 25rem;
+      }
+
+      to {
+        right: 0;
+      }
     }
   </style>
 </head>
@@ -58,16 +92,20 @@
 
     window.addEventListener('load', () => {
       images[0].style.display = 'block';
-      images[0].classList.add("cool");
     });
 
     rightArrow.addEventListener('click', () => {
       images[keepTrack].style.display = 'none';
       keepTrack++;
       if (keepTrack >= images.length) {
-        keepTrack = 0;
+        keepTrack = 0
       }
       images[keepTrack].style.display = 'block';
+      if (images[keepTrack].className === "slideLeft") {
+        images[keepTrack].className = "slideRight";
+      } else {
+        images[keepTrack].className = "slideRight";
+      }
     });
 
     leftArrow.addEventListener('click', () => {
@@ -77,6 +115,11 @@
         keepTrack = images.length - 1;
       }
       images[keepTrack].style.display = 'block';
+      if (images[keepTrack].className === "slideRight") {
+        images[keepTrack].className = "slideLeft";
+      } else {
+        images[keepTrack].className = "slideLeft";
+      }
     });
   </script>
   <script src="scripts.js"></script>
