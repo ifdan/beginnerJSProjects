@@ -349,3 +349,67 @@ h1 {
   top: 15px;
   transform: rotate(90deg);
 }
+
+/* Image Slider */
+.slider-container {
+  background-color: #000;
+  border: 3px solid #fff;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 600px;
+  overflow: hidden;
+}
+
+.arrow-left {
+  align-self: center;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #fff;
+}
+
+.arrow-right {
+  align-self: center;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 20px solid #fff;
+}
+
+img {
+  display: none;
+  position: relative;
+  width: 600px;
+}
+
+.slideRight {
+  animation-duration: 300ms;
+  animation-name: slideRight;
+}
+
+@keyframes slideRight {
+  from {
+    left: 25rem;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+.slideLeft {
+  animation-duration: 300ms;
+  animation-name: slideLeft;
+}
+
+@keyframes slideLeft {
+  from {
+    right: 25rem;
+  }
+
+  to {
+    right: 0;
+  }
+}

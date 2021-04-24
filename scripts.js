@@ -327,5 +327,37 @@ function getTime() {
   const rotateLineHours = (hours * 30) - 90;
   secondsLine.style.rotate = (`${rotateLineSeconds}deg`);
   minutesLine.style.rotate = (`${rotateLineMinutes}deg`);
-  hoursLine.style.rotate =  (`${rotateLineHours}deg`);
+  hoursLine.style.rotate = (`${rotateLineHours}deg`);
+}
+
+// Image Slider
+function slider(arrows) {
+  let keepTrack = 0;
+  let images = document.querySelectorAll('.slider-image');
+
+  window.addEventListener('load', () => {
+    images[0].style.display = 'block';
+  });
+
+  arrows.forEach((arrow, i) => {
+    arrow.addEventListener('click', (e) => {
+      images[keepTrack].style.display = 'none';
+      if (i === 0) {
+        keepTrack--;
+      } else {
+        keepTrack++;
+      }
+      if (keepTrack >= images.length) {
+        keepTrack = 0;
+      } else if (keepTrack < 0) {
+        keepTrack = images.length - 1;
+      }
+      images[keepTrack].style.display = 'block';
+      if (e.target.classList.contains('arrow-right')) {
+        images[keepTrack].className = 'slideRight';
+      } else {
+        images[keepTrack].className = 'slideLeft';
+      }
+    });
+  });
 }

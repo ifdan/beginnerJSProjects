@@ -5,124 +5,24 @@
   <title>Image Slider</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-  <style>
-    .slider-container {
-      background-color: #000;
-      border: 3px solid #fff;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-      width: 600px;
-      overflow: hidden;
-    }
-
-    .arrow-left {
-      align-self: center;
-      width: 0;
-      height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-right: 20px solid #fff;
-    }
-
-    .arrow-right {
-      align-self: center;
-      width: 0;
-      height: 0;
-      border-top: 15px solid transparent;
-      border-bottom: 15px solid transparent;
-      border-left: 20px solid #fff;
-    }
-
-    img {
-      display: none;
-      position: relative;
-      width: 600px;
-    }
-
-    .slideRight {
-      animation-duration: 300ms;
-      animation-name: slideRight;
-    }
-
-    @keyframes slideRight {
-      from {
-        left: 25rem;
-      }
-
-      to {
-        left: 0;
-      }
-    }
-
-    .slideLeft {
-      animation-duration: 300ms;
-      animation-name: slideLeft;
-    }
-
-    @keyframes slideLeft {
-      from {
-        right: 25rem;
-      }
-
-      to {
-        right: 0;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <div class="contentContainer">
     <h1>IMAGE SLIDER</h1>
-    <div class="arrow-left"></div>
+    <div class="arrow arrow-left"></div>
     <div class="slider-container">
-      <img src="images/one.png" alt="Test images">
-      <img src="images/two.jpg" alt="Test images">
-      <img src="images/three.jpg" alt="Test images">
-      <img src="images/four.jpg" alt="Test images">
+      <img src="images/one.png" alt="Test images" class="slider-image">
+      <img src="images/two.jpg" alt="Test images" class="slider-image">
+      <img src="images/three.jpg" alt="Test images" class="slider-image">
+      <img src="images/four.jpg" alt="Test images" class="slider-image">
     </div>
-    <div class="arrow-right"></div>
+    <div class="arrow arrow-right"></div>
   </div>
-
-  <script>
-    let keepTrack = 0;
-    let images = Array.from(document.images);
-    const leftArrow = document.querySelector(".arrow-left");
-    const rightArrow = document.querySelector(".arrow-right");
-
-    window.addEventListener('load', () => {
-      images[0].style.display = 'block';
-    });
-
-    rightArrow.addEventListener('click', () => {
-      images[keepTrack].style.display = 'none';
-      keepTrack++;
-      if (keepTrack >= images.length) {
-        keepTrack = 0
-      }
-      images[keepTrack].style.display = 'block';
-      if (images[keepTrack].className === "slideLeft") {
-        images[keepTrack].className = "slideRight";
-      } else {
-        images[keepTrack].className = "slideRight";
-      }
-    });
-
-    leftArrow.addEventListener('click', () => {
-      images[keepTrack].style.display = 'none';
-      keepTrack--;
-      if (keepTrack < 0) {
-        keepTrack = images.length - 1;
-      }
-      images[keepTrack].style.display = 'block';
-      if (images[keepTrack].className === "slideRight") {
-        images[keepTrack].className = "slideLeft";
-      } else {
-        images[keepTrack].className = "slideLeft";
-      }
-    });
-  </script>
   <script src="scripts.js"></script>
+  <script>
+    slider(document.querySelectorAll('.arrow'));
+  </script>
 </body>
 
 </html>
