@@ -1,0 +1,194 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <style>
+    .calculator-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 250px;
+    }
+
+    .calculator-output {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 2rem;
+      padding-right: 0.5rem;
+      width: 209px;
+      height: 50px;
+      margin: 0.2rem;
+    }
+
+    .cal-first,
+    .cal-second,
+    .cal-third,
+    .cal-fourth,
+    .cal-fifth {
+      display: flex;
+    }
+
+    .cal-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      background-color: #000;
+      margin: 0.2rem;
+    }
+
+    .cal-fifth {
+      display: flex;
+      justify-content: start;
+      padding-left: 1.5rem;
+      width: 100%;
+    }
+
+    .cal-equals {
+      width: 106px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contentContainer">
+    <h1>CALCULATOR</h1>
+    <div class="calculator-container">
+      <div class="calculator-output"></div>
+      <div class="cal-first">
+        <div class="cal-box cal-clear">c</div>
+        <div class="cal-box cal-decimal">.</div>
+        <div class="cal-box cal-divide">/</div>
+        <div class="cal-box cal-multiply">x</div>
+      </div>
+      <div class="cal-second">
+        <div class="cal-box cal-num cal-seven">7</div>
+        <div class="cal-box cal-num cal-eight">8</div>
+        <div class="cal-box cal-num cal-nine">9</div>
+        <div class="cal-box cal-subtract">-</div>
+      </div>
+      <div class="cal-third">
+        <div class="cal-box cal-num cal-four">4</div>
+        <div class="cal-box cal-num cal-five">5</div>
+        <div class="cal-box cal-num cal-six">6</div>
+        <div class="cal-box cal-add">+</div>
+      </div>
+      <div class="cal-fourth">
+        <div class="cal-box cal-num cal-one">1</div>
+        <div class="cal-box cal-num cal-two">2</div>
+        <div class="cal-box cal-num cal-three">3</div>
+        <div class="cal-box cal-num cal-zero">0</div>
+      </div>
+      <div class="cal-fifth">
+        <div class="cal-box cal-equals">=</div>
+      </div>
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+  <script>
+    /* Building a calculator. Get past your block. What do you need to do? Project Requirements: OOP approach. Use contructors, new objects and create a prototype chain. */
+    /* 
+      Break down how a calculator works. Define each piece of functionality.
+      1. Retain the user number selection.
+      2. Clear the Selection.
+      3. Add the Selection.
+      4. Subtract the Selections.
+      5. Divide the Selections.
+      6. Multiple the Selections.
+    */
+
+    function Info(targets, userSelection) {
+      this.targets = targets;
+      this.userSelection = userSelection;
+    }
+
+    Info.prototype.operators = ["+", "/", "-", "x"];
+
+    Info.prototype.stringToInt = function(string) {
+      let convert = Number.parseInt(string);
+      if (!Number.isNaN(convert)) {
+        return convert;
+      }
+    }
+
+    Info.prototype.filterSelection = function(numbers) {
+      numbers.forEach(function(element, index, array) {
+        if (!Number.parseInt(element)) {
+          let operator = element;
+          let newNumbers = numbers.slice(0, index);
+          let concatNums = new String;
+          newNumbers.forEach(function(element, index, array) {
+            concatNums += element;
+          });
+          temp.correctNumber = concatNums;
+          temp.operator = operator;
+        }
+      });
+      equation.targets.length = 0;
+    }
+
+    Info.prototype.add = function(first, second) {
+      return first + second;
+    }
+    Info.prototype.subtract = function(first, second) {
+      return first - second;
+    }
+    Info.prototype.divide = function(first, second) {
+      return first / second;
+    }
+    Info.prototype.multiply = function(first, second) {
+      return first * second;
+    }
+    Info.prototype.clear = function() {}
+
+    let equation = new Info(new Array, new Array);
+    let temp = new Object;
+
+    function doMath(selections) {
+      if (selections[1] === '+') {
+        document.querySelector('.calculator-output').innerHTML = equation.add(selections[0], selections[2]);
+      } else if (selections[1] === '-') {
+        document.querySelector('.calculator-output').innerHTML = equation.subtract(selections[0], selections[2]);
+      } else if (selections[1] === '/') {
+        document.querySelector('.calculator-output').innerHTML = equation.divide(selections[0], selections[2]);
+      } else if (selections[1] === 'x') {
+        document.querySelector('.calculator-output').innerHTML = equation.multiply(selections[0], selections[2]);
+      }
+    }
+
+    document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
+      element.addEventListener('click', function(event) {
+        equation.targets.push(event.target.innerHTML);
+        document.querySelector('.calculator-output').innerHTML = event.target.innerHTML
+        equation.operators.forEach(function(element, index, array) {
+          if (event.target.innerHTML === element) {
+            equation.filterSelection(equation.targets);
+            temp.correctNumber = equation.stringToInt(temp.correctNumber);
+            equation.userSelection.push(temp.correctNumber);
+            equation.userSelection.push(temp.operator);
+          }
+        });
+
+        if (event.target.innerHTML === '=') {
+          equation.filterSelection(equation.targets);
+          temp.correctNumber = equation.stringToInt(temp.correctNumber);
+          equation.userSelection.push(temp.correctNumber);
+          equation.userSelection.push(temp.operator);
+          doMath(equation.userSelection);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

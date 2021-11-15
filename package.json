@@ -17,12 +17,12 @@
   },
   "homepage": "https://github.com/ifdan/beginnerJSProjects#readme",
   "devDependencies": {
-    "eslint": "^7.19.0",
+    "eslint": "^7.25.0",
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
     "jshint": "^2.12.0",
     "jslint": "^0.12.1",
-    "stylelint": "^13.10.0"
+    "stylelint": "^13.13.1"
   }
 }
