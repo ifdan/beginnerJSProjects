@@ -112,97 +112,40 @@
       this.userSelection = userSelection;
     }
 
-    Info.prototype.operators = ["+", "/", "-", "x"];
-
-    Info.prototype.add = function(first, second) {
-      return first + second;
-    }
-    Info.prototype.subtract = function(first, second) {
-      return first - second;
-    }
-    Info.prototype.divide = function(first, second) {
-      return first / second;
-    }
-    Info.prototype.multiply = function(first, second) {
-      return first * second;
-    }
-    Info.prototype.clear = function() {}
-
     Info.prototype.stringToInt = function(string) {
-      let convert = Number.parseInt(string);
-      if (!Number.isNaN(convert)) {
-        return convert;
+      if (string.length <= 1) {
+        let convert = Number.parseInt(string);
+        if (!Number.isNaN(convert)) {
+          return convert;
+        }
+      } else {
+        let convert = new String;
+        string.forEach(function(element, index, array) {
+          convert += element;
+        });
+        return Number.parseInt(convert);
       }
     }
 
-    Info.prototype.filterSelection = function(targets) {
+    Info.prototype.filterSelection = function(targets, selection) {
       if (targets.length <= 1) {
         return targets[0];
+      } else {
+        let newArr = new Array;
+        newArr = targets.concat(selection);
+        return newArr;
       }
-
-      // let concatNums = new String;
-      // targets.forEach(function(element, index, array) {
-      //   if (!Number.parseInt(element)) {
-      //     let operator = element;
-      //     let newNumbers = numbers.slice(0, index);
-      //     let concatNums = new String;
-      //     newNumbers.forEach(function(element, index, array) {
-      //       concatNums += element;
-      //     });
-      //     temp.correctNumber = concatNums;
-      //     temp.operator = operator;
-      //   } else {
-      //     concatNums += element;
-      //   }
-      //   temp.correctNumber = concatNums;
-      // });
-      // equation.targets.length = 0;
     }
 
     let equation = new Info(new Array, new Array);
-
-    function doMath(selections) {
-      if (selections[1] === '+') {
-        document.querySelector('.calculator-output').innerHTML = equation.add(selections[0], selections[2]);
-      } else if (selections[1] === '-') {
-        document.querySelector('.calculator-output').innerHTML = equation.subtract(selections[0], selections[2]);
-      } else if (selections[1] === '/') {
-        document.querySelector('.calculator-output').innerHTML = equation.divide(selections[0], selections[2]);
-      } else if (selections[1] === 'x') {
-        document.querySelector('.calculator-output').innerHTML = equation.multiply(selections[0], selections[2]);
-      }
-    }
 
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
       element.addEventListener('click', function(event) {
         let temp = new Object;
         equation.targets.push(event.target.innerHTML);
-        temp.number = equation.filterSelection(equation.targets);
+        temp.number = equation.filterSelection(equation.targets, equation.userSelection);
         temp.number = equation.stringToInt(temp.number);
-        console.log(typeof temp.number);
-        // if (equation.targets.length > 1) {
-        //   equation.filterSelection(equation.targets);
-        //   document.querySelector('.calculator-output').innerHTML = temp.correctNumber;
-        // } else {
-        //   document.querySelector('.calculator-output').innerHTML = event.target.innerHTML;
-        // }
-        // console.log(equation);
-        // equation.operators.forEach(function(element, index, array) {
-        //   if (event.target.innerHTML === element) {
-        //     equation.filterSelection(equation.targets);
-        //     temp.correctNumber = equation.stringToInt(temp.correctNumber);
-        //     equation.userSelection.push(temp.correctNumber);
-        //     equation.userSelection.push(temp.operator);
-        //   }
-        // });
-
-        // if (event.target.innerHTML === '=') {
-        //   equation.filterSelection(equation.targets);
-        //   temp.correctNumber = equation.stringToInt(temp.correctNumber);
-        //   equation.userSelection.push(temp.correctNumber);
-        //   equation.userSelection.push(temp.operator);
-        //   doMath(equation.userSelection);
-        // }
+        console.log(temp.number);
       });
     });
   </script>
