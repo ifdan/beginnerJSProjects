@@ -112,6 +112,15 @@
       this.userSelection = userSelection;
     }
 
+    Info.prototype.assignPlacement = function(tempNumber, selectionHistory) {
+      if (typeof selectionHistory[selectionHistory.length - 1] === 'number' && typeof tempNumber === 'number') {
+        selectionHistory.pop();
+        selectionHistory.push(tempNumber);
+      } else {
+        selectionHistory.push(tempNumber);
+      }
+    }
+
     Info.prototype.stringToInt = function(string) {
       if (!Number.isNaN(Number.parseInt(string))) {
         return Number.parseInt(string);
@@ -138,17 +147,16 @@
 
     let equation = new Info(new Array, new Array);
 
-    // you now have the filter selection working correctly. And the string to int function either returns the string if it can be converted to a number or returns the string as a string if it cannot. Next step is assign the values to an area or start the equation. not sure if you need to assign an area.
+    // everything is working correctly. Now you need to take the userSelection array and run the equations if someone clicks the equal button.
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
       element.addEventListener('click', function(event) {
         let temp = new Object;
         equation.targets.push(event.target.innerHTML);
         temp.number = equation.filterSelection(equation.targets);
         temp.number = equation.stringToInt(temp.number);
-        if (typeof temp.number === 'number') {
-          equation.userSelection.push(temp.number);
-        }
-        console.log(equation.userSelection)
+        document.querySelector('.calculator-output').innerText = temp.number;
+        equation.assignPlacement(temp.number, equation.userSelection);
+        console.log(equation.userSelection);
       });
     });
   </script>
