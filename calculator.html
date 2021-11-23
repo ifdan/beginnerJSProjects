@@ -113,39 +113,42 @@
     }
 
     Info.prototype.stringToInt = function(string) {
-      if (string.length <= 1) {
-        let convert = Number.parseInt(string);
-        if (!Number.isNaN(convert)) {
-          return convert;
-        }
+      if (!Number.isNaN(Number.parseInt(string))) {
+        return Number.parseInt(string);
       } else {
-        let convert = new String;
-        string.forEach(function(element, index, array) {
-          convert += element;
-        });
-        return Number.parseInt(convert);
+        return string;
       }
     }
 
-    Info.prototype.filterSelection = function(targets, selection) {
-      if (targets.length <= 1) {
-        return targets[0];
-      } else {
-        let newArr = new Array;
-        newArr = targets.concat(selection);
-        return newArr;
-      }
+    Info.prototype.filterSelection = function(targets) {
+      let numbers = new String;
+      targets.forEach(function(element, index, array) {
+        if (!Number.isNaN(Number.parseInt(element))) {
+          numbers += element;
+          if (Number.isNaN(Number.parseInt(numbers[0]))) {
+            numbers = numbers.slice(1);
+          }
+        } else {
+          numbers = new String;
+          numbers = element;
+        }
+      });
+      return numbers;
     }
 
     let equation = new Info(new Array, new Array);
 
+    // you now have the filter selection working correctly. And the string to int function either returns the string if it can be converted to a number or returns the string as a string if it cannot. Next step is assign the values to an area or start the equation. not sure if you need to assign an area.
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
       element.addEventListener('click', function(event) {
         let temp = new Object;
         equation.targets.push(event.target.innerHTML);
-        temp.number = equation.filterSelection(equation.targets, equation.userSelection);
+        temp.number = equation.filterSelection(equation.targets);
         temp.number = equation.stringToInt(temp.number);
-        console.log(temp.number);
+        if (typeof temp.number === 'number') {
+          equation.userSelection.push(temp.number);
+        }
+        console.log(equation.userSelection)
       });
     });
   </script>
