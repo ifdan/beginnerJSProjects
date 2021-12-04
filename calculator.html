@@ -115,10 +115,8 @@
     Info.prototype.assignPlacement = function(tempNumber, selectionHistory) {
       if (typeof selectionHistory[selectionHistory.length - 1] === 'number' && typeof tempNumber === 'number') {
         selectionHistory.pop();
-        selectionHistory.push(tempNumber);
-      } else {
-        selectionHistory.push(tempNumber);
       }
+      selectionHistory.push(tempNumber);
     }
 
     Info.prototype.stringToInt = function(string) {
@@ -145,9 +143,44 @@
       return numbers;
     }
 
+    Info.prototype.evalSelection = function(userSelection) {
+      if (userSelection.length > 3) {
+        let retain = userSelection.pop();
+        if (userSelection[1] === 'x') {
+          userSelection = Array.of(equation.multiply(userSelection[0], userSelection[2]));
+          userSelection.push(retain);
+        } else if (userSelection[1] === '/') {
+          userSelection = Array.of(equation.divide(userSelection[0], userSelection[2]));
+          userSelection.push(retain);
+        } else if (userSelection[1] === '+') {
+          userSelection = Array.of(equation.add(userSelection[0], userSelection[2]));
+          userSelection.push(retain);
+        } else if (userSelection[1] === '-') {
+          userSelection = Array.of(equation.subtract(userSelection[0], userSelection[2]));
+          userSelection.push(retain);
+        }
+      }
+      return userSelection;
+    }
+
+    Info.prototype.multiply = function(a, b) {
+      return a * b;
+    }
+
+    Info.prototype.divide = function(a, b) {
+      return a / b;
+    }
+
+    Info.prototype.add = function(a, b) {
+      return a + b;
+    }
+
+    Info.prototype.subtract = function(a, b) {
+      return a - b;
+    }
+
     let equation = new Info(new Array, new Array);
 
-    // everything is working correctly. Now you need to take the userSelection array and run the equations if someone clicks the equal button.
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
       element.addEventListener('click', function(event) {
         let temp = new Object;
@@ -156,9 +189,12 @@
         temp.number = equation.stringToInt(temp.number);
         document.querySelector('.calculator-output').innerText = temp.number;
         equation.assignPlacement(temp.number, equation.userSelection);
+        equation.userSelection = equation.evalSelection(equation.userSelection);
         console.log(equation.userSelection);
       });
     });
+
+    // Every time a operator is clicked, aside from when the length of the userSelection is less than 3, it should evalute the last three index's and store that result. Ex: 6 + 6 + 5 should be 6 + 6 then when they click the operator again 6 + 6 will be 12. 12 takes the place of 6 + 6 now when the operator is clicked again it would be 12 operator then next target. Continue the pattern like this forever.
   </script>
 </body>
 
