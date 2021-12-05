@@ -139,14 +139,6 @@
       return numbers;
     }
 
-    Info.prototype.showUser = function(userSelection) {
-      if (userSelection.length <= 2) {
-        document.querySelector('.calculator-output').innerText = userSelection[0];
-      } else {
-        document.querySelector('.calculator-output').innerText = userSelection[2];
-      }
-    }
-
     Info.prototype.evalSelection = function(userSelection) {
       if (userSelection.length > 3) {
         let retain = userSelection.pop();
@@ -182,6 +174,23 @@
       return a - b;
     }
 
+    Info.prototype.showUser = function(userSelection) {
+      if (userSelection.length <= 2) {
+        document.querySelector('.calculator-output').innerText = userSelection[0];
+      } else {
+        document.querySelector('.calculator-output').innerText = userSelection[2];
+      }
+    }
+
+    Info.prototype.clearSelection = function(userSelection) {
+      userSelection.forEach(function(element, index, array) {
+        if (element === 'c') {
+          userSelection.length = 0;
+        }
+      })
+      return userSelection;
+    }
+
     let equation = new Info(new Array, new Array);
 
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
@@ -192,12 +201,17 @@
         temp.number = equation.stringToInt(temp.number);
         equation.assignPlacement(temp.number, equation.userSelection);
         equation.userSelection = equation.evalSelection(equation.userSelection);
-        equation.showUser(equation.userSelection);
+        equation.userSelection = equation.clearSelection(equation.userSelection);
+        if (equation.userSelection.length === 0) {
+          document.querySelector('.calculator-output').innerText = '';
+        } else {
+          equation.showUser(equation.userSelection);
+        }
         console.log(equation.userSelection);
       });
     });
 
-    // Program the clear button
+    // Do not let two operators be clicked in a row. You still need to make decimal's and highlights for the clicked buttons.
   </script>
 </body>
 
