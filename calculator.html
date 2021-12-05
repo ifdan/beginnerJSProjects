@@ -101,10 +101,6 @@
       Break down how a calculator works. Define each piece of functionality.
       1. Retain the user number selection.
       2. Clear the Selection.
-      3. Add the Selection.
-      4. Subtract the Selections.
-      5. Divide the Selections.
-      6. Multiple the Selections.
     */
 
     function Info(targets, userSelection) {
@@ -143,20 +139,27 @@
       return numbers;
     }
 
+    Info.prototype.showUser = function(userSelection) {
+      if (userSelection.length <= 2) {
+        document.querySelector('.calculator-output').innerText = userSelection[0];
+      } else {
+        document.querySelector('.calculator-output').innerText = userSelection[2];
+      }
+    }
+
     Info.prototype.evalSelection = function(userSelection) {
       if (userSelection.length > 3) {
         let retain = userSelection.pop();
         if (userSelection[1] === 'x') {
           userSelection = Array.of(equation.multiply(userSelection[0], userSelection[2]));
-          userSelection.push(retain);
         } else if (userSelection[1] === '/') {
           userSelection = Array.of(equation.divide(userSelection[0], userSelection[2]));
-          userSelection.push(retain);
         } else if (userSelection[1] === '+') {
           userSelection = Array.of(equation.add(userSelection[0], userSelection[2]));
-          userSelection.push(retain);
         } else if (userSelection[1] === '-') {
           userSelection = Array.of(equation.subtract(userSelection[0], userSelection[2]));
+        }
+        if (retain !== '=') {
           userSelection.push(retain);
         }
       }
@@ -187,14 +190,14 @@
         equation.targets.push(event.target.innerHTML);
         temp.number = equation.filterSelection(equation.targets);
         temp.number = equation.stringToInt(temp.number);
-        document.querySelector('.calculator-output').innerText = temp.number;
         equation.assignPlacement(temp.number, equation.userSelection);
         equation.userSelection = equation.evalSelection(equation.userSelection);
+        equation.showUser(equation.userSelection);
         console.log(equation.userSelection);
       });
     });
 
-    // Every time a operator is clicked, aside from when the length of the userSelection is less than 3, it should evalute the last three index's and store that result. Ex: 6 + 6 + 5 should be 6 + 6 then when they click the operator again 6 + 6 will be 12. 12 takes the place of 6 + 6 now when the operator is clicked again it would be 12 operator then next target. Continue the pattern like this forever.
+    // Program the clear button
   </script>
 </body>
 
