@@ -99,8 +99,8 @@
     /* Building a calculator. Get past your block. What do you need to do? Project Requirements: OOP approach. Use contructors, new objects and create a prototype chain. */
     /* 
       Break down how a calculator works. Define each piece of functionality.
-      1. Retain the user number selection.
-      2. Clear the Selection.
+      1. decimal operational
+      2. disallow no two operators to be stored in a row
     */
 
     function Info(targets, userSelection) {
@@ -134,6 +134,10 @@
         } else {
           numbers = new String;
           numbers = element;
+          if (Number.isNaN(Number.parseInt(array[index - 1]))) {
+            console.log(array);
+            // attempting to solve disallowing two operators to be chosen in a row. 
+          }
         }
       });
       return numbers;
@@ -207,7 +211,6 @@
         } else {
           equation.showUser(equation.userSelection);
         }
-        console.log(equation.userSelection);
       });
     });
 
