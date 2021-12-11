@@ -46,17 +46,6 @@
       background-color: #000;
       margin: 0.2rem;
     }
-
-    .cal-fifth {
-      display: flex;
-      justify-content: start;
-      padding-left: 1.5rem;
-      width: 100%;
-    }
-
-    .cal-equals {
-      width: 106px;
-    }
   </style>
 </head>
 
@@ -67,29 +56,26 @@
       <div class="calculator-output"></div>
       <div class="cal-first">
         <div class="cal-box cal-clear">c</div>
-        <div class="cal-box cal-decimal">.</div>
         <div class="cal-box cal-divide">/</div>
         <div class="cal-box cal-multiply">x</div>
+        <div class="cal-box cal-subtract">-</div>
       </div>
       <div class="cal-second">
         <div class="cal-box cal-num cal-seven">7</div>
         <div class="cal-box cal-num cal-eight">8</div>
         <div class="cal-box cal-num cal-nine">9</div>
-        <div class="cal-box cal-subtract">-</div>
+        <div class="cal-box cal-add">+</div>
       </div>
       <div class="cal-third">
         <div class="cal-box cal-num cal-four">4</div>
         <div class="cal-box cal-num cal-five">5</div>
         <div class="cal-box cal-num cal-six">6</div>
-        <div class="cal-box cal-add">+</div>
+        <div class="cal-box cal-num cal-zero">0</div>
       </div>
       <div class="cal-fourth">
         <div class="cal-box cal-num cal-one">1</div>
         <div class="cal-box cal-num cal-two">2</div>
         <div class="cal-box cal-num cal-three">3</div>
-        <div class="cal-box cal-num cal-zero">0</div>
-      </div>
-      <div class="cal-fifth">
         <div class="cal-box cal-equals">=</div>
       </div>
     </div>
@@ -100,7 +86,7 @@
     /* 
       Break down how a calculator works. Define each piece of functionality.
       1. decimal operational
-      2. disallow no two operators to be stored in a row
+      2. highlight for current selection (white border)
     */
 
     function Info(targets, userSelection) {
@@ -110,6 +96,8 @@
 
     Info.prototype.assignPlacement = function(tempNumber, selectionHistory) {
       if (typeof selectionHistory[selectionHistory.length - 1] === 'number' && typeof tempNumber === 'number') {
+        selectionHistory.pop();
+      } else if (typeof selectionHistory[selectionHistory.length - 1] !== 'number' && typeof tempNumber !== 'number') {
         selectionHistory.pop();
       }
       selectionHistory.push(tempNumber);
@@ -126,7 +114,7 @@
     Info.prototype.filterSelection = function(targets) {
       let numbers = new String;
       targets.forEach(function(element, index, array) {
-        if (!Number.isNaN(Number.parseInt(element))) {
+        if (!Number.isNaN(Number.parseInt(element)) || element === '.') {
           numbers += element;
           if (Number.isNaN(Number.parseInt(numbers[0]))) {
             numbers = numbers.slice(1);
@@ -134,10 +122,6 @@
         } else {
           numbers = new String;
           numbers = element;
-          if (Number.isNaN(Number.parseInt(array[index - 1]))) {
-            console.log(array);
-            // attempting to solve disallowing two operators to be chosen in a row. 
-          }
         }
       });
       return numbers;
@@ -163,19 +147,43 @@
     }
 
     Info.prototype.multiply = function(a, b) {
-      return a * b;
+      let doMath = Number.parseFloat(a * b).toFixed(2);
+      [...doMath].forEach(function(element, index, array) {
+        if (element === '.' && array[index + 1] === '0') {
+          doMath = parseInt(doMath.slice(0, index));
+        }
+      })
+      return doMath;
     }
 
     Info.prototype.divide = function(a, b) {
-      return a / b;
+      let doMath = Number.parseFloat(a / b).toFixed(2);
+      [...doMath].forEach(function(element, index, array) {
+        if (element === '.' && array[index + 1] === '0') {
+          doMath = parseInt(doMath.slice(0, index));
+        }
+      })
+      return doMath;
     }
 
     Info.prototype.add = function(a, b) {
-      return a + b;
+      let doMath = Number.parseFloat(a + b).toFixed(2);
+      [...doMath].forEach(function(element, index, array) {
+        if (element === '.' && array[index + 1] === '0') {
+          doMath = parseInt(doMath.slice(0, index));
+        }
+      })
+      return doMath;
     }
 
     Info.prototype.subtract = function(a, b) {
-      return a - b;
+      let doMath = Number.parseFloat(a - b).toFixed(2);
+      [...doMath].forEach(function(element, index, array) {
+        if (element === '.' && array[index + 1] === '0') {
+          doMath = parseInt(doMath.slice(0, index));
+        }
+      })
+      return doMath;
     }
 
     Info.prototype.showUser = function(userSelection) {
@@ -206,6 +214,7 @@
         equation.assignPlacement(temp.number, equation.userSelection);
         equation.userSelection = equation.evalSelection(equation.userSelection);
         equation.userSelection = equation.clearSelection(equation.userSelection);
+        console.log(equation.userSelection);
         if (equation.userSelection.length === 0) {
           document.querySelector('.calculator-output').innerText = '';
         } else {
@@ -214,7 +223,7 @@
       });
     });
 
-    // Do not let two operators be clicked in a row. You still need to make decimal's and highlights for the clicked buttons.
+    // You still need to make decimal's and highlights for the clicked buttons.
   </script>
 </body>
 
