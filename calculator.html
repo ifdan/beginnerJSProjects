@@ -41,10 +41,15 @@
       font-weight: 700;
       font-size: 1.5rem;
       color: #fff;
-      width: 50px;
-      height: 50px;
+      width: 2.9rem;
+      height: 2.9rem;
       background-color: #000;
+      border: 0.1rem solid #000;
       margin: 0.2rem;
+    }
+
+    .cal-box.active {
+      border-color: #fff;
     }
   </style>
 </head>
@@ -86,7 +91,6 @@
     /* 
       Break down how a calculator works. Define each piece of functionality.
       1. decimal operational
-      2. highlight for current selection (white border)
     */
 
     function Info(targets, userSelection) {
@@ -204,10 +208,18 @@
     }
 
     let equation = new Info(new Array, new Array);
+    let testArr = new Array;
 
     document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
       element.addEventListener('click', function(event) {
         let temp = new Object;
+        testArr.push(element);
+        for (let i = 0; i < testArr.length; i++) {
+          if (testArr[i].classList.contains('active')) {
+            testArr[i].classList.remove('active');
+          }
+        }
+        event.target.classList.add('active');
         equation.targets.push(event.target.innerHTML);
         temp.number = equation.filterSelection(equation.targets);
         temp.number = equation.stringToInt(temp.number);
@@ -223,7 +235,7 @@
       });
     });
 
-    // You still need to make decimal's and highlights for the clicked buttons.
+    // You still need to make decimal's work.
   </script>
 </body>
 
