@@ -361,3 +361,146 @@ function slider(arrows) {
     });
   });
 }
+
+// Calculator
+function Info(targets, userSelection) {
+  this.targets = targets;
+  this.userSelection = userSelection;
+}
+
+Info.prototype.assignPlacement = function(tempNumber, selectionHistory) {
+  if (typeof selectionHistory[selectionHistory.length - 1] === 'number' && typeof tempNumber === 'number') {
+    selectionHistory.pop();
+  } else if (typeof selectionHistory[selectionHistory.length - 1] !== 'number' && typeof tempNumber !== 'number') {
+    selectionHistory.pop();
+  }
+  selectionHistory.push(tempNumber);
+}
+
+Info.prototype.stringToInt = function(string) {
+  if (!Number.isNaN(Number.parseInt(string))) {
+    return Number.parseInt(string);
+  } else {
+    return string;
+  }
+}
+
+Info.prototype.filterSelection = function(targets) {
+  let numbers = new String;
+  targets.forEach(function(element, index, array) {
+    if (!Number.isNaN(Number.parseInt(element)) || element === '.') {
+      numbers += element;
+      if (Number.isNaN(Number.parseInt(numbers[0]))) {
+        numbers = numbers.slice(1);
+      }
+    } else {
+      numbers = new String;
+      numbers = element;
+    }
+  });
+  return numbers;
+}
+
+Info.prototype.evalSelection = function(userSelection) {
+  if (userSelection.length > 3) {
+    let retain = userSelection.pop();
+    if (userSelection[1] === 'x') {
+      userSelection = Array.of(equation.multiply(userSelection[0], userSelection[2]));
+    } else if (userSelection[1] === '/') {
+      userSelection = Array.of(equation.divide(userSelection[0], userSelection[2]));
+    } else if (userSelection[1] === '+') {
+      userSelection = Array.of(equation.add(userSelection[0], userSelection[2]));
+    } else if (userSelection[1] === '-') {
+      userSelection = Array.of(equation.subtract(userSelection[0], userSelection[2]));
+    }
+    if (retain !== '=') {
+      userSelection.push(retain);
+    }
+  }
+  return userSelection;
+}
+
+Info.prototype.multiply = function(a, b) {
+  let doMath = Number.parseFloat(a * b).toFixed(2);
+  [...doMath].forEach(function(element, index, array) {
+    if (element === '.' && array[index + 1] === '0') {
+      doMath = parseInt(doMath.slice(0, index));
+    }
+  })
+  return doMath;
+}
+
+Info.prototype.divide = function(a, b) {
+  let doMath = Number.parseFloat(a / b).toFixed(2);
+  [...doMath].forEach(function(element, index, array) {
+    if (element === '.' && array[index + 1] === '0') {
+      doMath = parseInt(doMath.slice(0, index));
+    }
+  })
+  return doMath;
+}
+
+Info.prototype.add = function(a, b) {
+  let doMath = Number.parseFloat(a + b).toFixed(2);
+  [...doMath].forEach(function(element, index, array) {
+    if (element === '.' && array[index + 1] === '0') {
+      doMath = parseInt(doMath.slice(0, index));
+    }
+  })
+  return doMath;
+}
+
+Info.prototype.subtract = function(a, b) {
+  let doMath = Number.parseFloat(a - b).toFixed(2);
+  [...doMath].forEach(function(element, index, array) {
+    if (element === '.' && array[index + 1] === '0') {
+      doMath = parseInt(doMath.slice(0, index));
+    }
+  })
+  return doMath;
+}
+
+Info.prototype.showUser = function(userSelection) {
+  if (userSelection.length <= 2) {
+    document.querySelector('.calculator-output').innerText = userSelection[0];
+  } else {
+    document.querySelector('.calculator-output').innerText = userSelection[2];
+  }
+}
+
+Info.prototype.clearSelection = function(userSelection) {
+  userSelection.forEach(function(element, index, array) {
+    if (element === 'c') {
+      userSelection.length = 0;
+    }
+  })
+  return userSelection;
+}
+
+let equation = new Info(new Array, new Array);
+let testArr = new Array;
+
+document.querySelectorAll('.cal-box').forEach(function(element, index, array) {
+  element.addEventListener('click', function(event) {
+    let temp = new Object;
+    testArr.push(element);
+    for (let i = 0; i < testArr.length; i++) {
+      if (testArr[i].classList.contains('active')) {
+        testArr[i].classList.remove('active');
+      }
+    }
+    event.target.classList.add('active');
+    equation.targets.push(event.target.innerHTML);
+    temp.number = equation.filterSelection(equation.targets);
+    temp.number = equation.stringToInt(temp.number);
+    equation.assignPlacement(temp.number, equation.userSelection);
+    equation.userSelection = equation.evalSelection(equation.userSelection);
+    equation.userSelection = equation.clearSelection(equation.userSelection);
+    console.log(equation.userSelection);
+    if (equation.userSelection.length === 0) {
+      document.querySelector('.calculator-output').innerText = '';
+    } else {
+      equation.showUser(equation.userSelection);
+    }
+  });
+});
